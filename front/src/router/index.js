@@ -22,6 +22,18 @@ const routes = [
     path: '/services',
     name: 'Services',
     component: () => import('../views/Services.vue'),
+    children: [
+      {
+        path: '',
+        name: 'ServicesList',
+        component: () => import('../views/Services.vue'),
+      },
+      {
+        path: ':service',
+        name: 'Service',
+        component: () => import('../views/Services.vue'),
+      },
+    ],
   },
   {
     path: '/portfolio',
