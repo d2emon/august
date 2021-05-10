@@ -78,14 +78,16 @@
 .body div div ul li {
     float:left;
     height: 257px;
-    width: 217px;
+    width: 215px;
     position:relative;
     margin:0 0 0 7px;
 }
 .body div div ul li#link1 {
     background:url(../images/design.jpg) no-repeat;
 }
-.body div div ul li#link1:hover, .body div div ul li#link2:hover, .body div div ul li#link3:hover {
+.body div div ul li#link1:hover,
+.body div div ul li#link2:hover,
+.body div div ul li#link3:hover {
     filter:alpha(opacity=90);/* Needed for IE8 and old versions */
     opacity:0.9;
 }
@@ -97,7 +99,7 @@
 }
 .body div div ul li a {
     height: 257px;
-    width: 217px;
+    width: 215px;
     display:inline-block;
     text-decoration:none;
 }
