@@ -1,0 +1,157 @@
+/*------------------------- Body ------------------------*/
+.body {
+    float:left;
+    width:728px;
+    position: relative;
+    background:url(../images/bg-body.png) repeat-y #e3e3e3;
+    min-height:1394px;
+    height:auto;
+    padding: 0 0 25px;
+    border-color: #dfdfdf;
+    border-style: none none none solid;
+    border-width: 1px;
+}
+.body div {
+    margin:23px 0 0 21px;
+    background:#fff;
+    -moz-box-shadow: 0 0 5px 3px #d3d3d3;
+    -webkit-box-shadow: 0 0 5px 3px#d3d3d3;
+    box-shadow: 0 0 5px 3px #d3d3d3;
+    overflow:hidden;
+}
+.body div h2 {
+    color: #919191;
+    font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #7d7d7d;
+    padding:36px 0 0 22px;
+    margin:0;
+}
+.body div p {
+    font-family: 'Conv_Muli-Italic';
+    font-size:16px;
+    line-height:24px;
+    color:#808080;
+    padding:0 0 0 22px;
+    margin: 23px 0 30px;
+}
+.body div p a {
+    color:#808080;
+}
+.body div p a:hover {
+    color:#484848;
+}
+.body div div {
+    background:none;
+    box-shadow:none;
+    margin: 0 21px;
+}
+.body div div h3 {
+    background:url(../images/border.jpg) repeat-x right center;
+    margin:20px 0 24px;
+}
+.body div div h3 span {
+    font-family: 'Conv_Muli-Regular';
+    font-size:18px;
+    color:#7d7d7d;
+    font-weight:normal;
+    display:block;
+    background-color:#fff;
+    width: 140px;
+}
+.body div div p {
+    padding:0;
+}
+.body div div ul {
+    margin:0;
+    padding:4px 0 7px;
+    list-style:none;
+    overflow:hidden;
+}
+.body div div ul li:first-child {
+    margin:0;
+}
+.body div div ul li {
+    float:left;
+    height: 257px;
+    width: 217px;
+    position:relative;
+    margin:0 0 0 7px;
+}
+.body div div ul li#link1 {
+    background:url(../images/design.jpg) no-repeat;
+}
+.body div div ul li#link1:hover, .body div div ul li#link2:hover, .body div div ul li#link3:hover {
+    filter:alpha(opacity=90);/* Needed for IE8 and old versions */
+    opacity:0.9;
+}
+.body div div ul li#link2 {
+    background:url(../images/seo.jpg) no-repeat;
+}
+.body div div ul li#link3 {
+    background:url(../images/copywriting.jpg) no-repeat;
+}
+.body div div ul li a {
+    height: 257px;
+    width: 217px;
+    display:inline-block;
+    text-decoration:none;
+}
+.body div div ul li a span:hover {
+    color: #919191;
+}
+.body div div ul li a span {
+    color:#7c7c7c;
+    font-size:24px;
+    text-transform:uppercase;
+    font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    text-decoration:none;
+    position:relative;
+    float:right;
+    top: 210px;
+    right:16px;
+}
+.body div div.section ul {
+    height:200px;
+    padding-bottom: 33px;
+}
+.body div div.section ul li:first-child {
+    margin:0;
+}
+.body div div.section ul li {
+    text-align:center;
+    background:url(../images/shadow.png) no-repeat 0 113px;
+    width:200px;
+    margin: 0 0 0 32px;
+}
+.body div div.section ul li a:first-child {
+    height:auto;
+    margin:0 0 13px 0;
+}
+.body div div.section ul li a:first-child img {
+    border:1px solid #e3e3e3;
+}
+.body div div.section ul li span {
+    font-family: 'Conv_Muli-Regular';
+    color:#7d7d7d;
+    font-size:12px;
+    display:block;
+    line-height:24px;
+}
+.body div div.section ul li a {
+    width:auto;
+    font-size:14px;
+    color:#7d7d7d;
+    font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-weight:normal;
+    height:auto;
+}
+.body div div.section ul li a:hover {
+    color:#404040;
+}
