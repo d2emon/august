@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import api from '../helpers/api';
 
 Vue.use(Vuex);
 
@@ -32,20 +33,7 @@ export default new Vuex.Store({
         to: '/blog',
       },
     ],
-    serviceLinks: {
-      link1: {
-        title: 'Дизайн',
-        to: '/services/link1',
-      },
-      link2: {
-        title: 'SEO',
-        to: '/services/link2',
-      },
-      link3: {
-        title: 'Копирайтинг',
-        to: '/services/link3',
-      },
-    },
+    serviceLinks: [],
     services: {
       link1: {
         title: 'Дизайн Логотипа',
@@ -143,8 +131,29 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    setServiceLinks: (state, value) => Vue.set(state, 'serviceLinks', value),
+    setLatestProjects: (state, value) => Vue.set(state, 'latestProjects', value),
   },
   actions: {
+    fetchServiceLinks: ({ commit }) => api
+      .getServices()
+      .then((services) => services.map((service) => ({
+        id: service.id,
+        title: service.title,
+        to: `/services/${service.id}`,
+        image: service.image,
+      })))
+      .then((services) => commit('setServiceLinks', services)),
+    fetchLatestProjects: ({ commit }) => api
+      .getLatestProjects()
+      .then((projects) => projects.map((project) => ({
+        id: project.id,
+        title: project.title,
+        client: project.client,
+        to: `/services/${project.id}`,
+        image: project.image,
+      })))
+      .then((projects) => commit('setLatestProjects', projects)),
   },
   modules: {
   },

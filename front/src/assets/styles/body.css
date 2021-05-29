@@ -45,6 +45,7 @@
 .body div p a:hover {
     color:#484848;
 }
+/* */
 .body div div {
     background:none;
     box-shadow:none;
@@ -82,21 +83,6 @@
     position:relative;
     margin:0 0 0 7px;
 }
-.body div div ul li#link1 {
-    background:url(../images/design.jpg) no-repeat;
-}
-.body div div ul li#link1:hover,
-.body div div ul li#link2:hover,
-.body div div ul li#link3:hover {
-    filter:alpha(opacity=90);/* Needed for IE8 and old versions */
-    opacity:0.9;
-}
-.body div div ul li#link2 {
-    background:url(../images/seo.jpg) no-repeat;
-}
-.body div div ul li#link3 {
-    background:url(../images/copywriting.jpg) no-repeat;
-}
 .body div div ul li a {
     height: 257px;
     width: 215px;
@@ -117,43 +103,4 @@
     top: 210px;
     right:16px;
 }
-.body div div.section ul {
-    height:200px;
-    padding-bottom: 33px;
-}
-.body div div.section ul li:first-child {
-    margin:0;
-}
-.body div div.section ul li {
-    text-align:center;
-    background:url(../images/shadow.png) no-repeat 0 113px;
-    width:200px;
-    margin: 0 0 0 32px;
-}
-.body div div.section ul li a:first-child {
-    height:auto;
-    margin:0 0 13px 0;
-}
-.body div div.section ul li a:first-child img {
-    border:1px solid #e3e3e3;
-}
-.body div div.section ul li span {
-    font-family: 'Conv_Muli-Regular';
-    color:#7d7d7d;
-    font-size:12px;
-    display:block;
-    line-height:24px;
-}
-.body div div.section ul li a {
-    width:auto;
-    font-size:14px;
-    color:#7d7d7d;
-    font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-    text-decoration:none;
-    text-transform:uppercase;
-    font-weight:normal;
-    height:auto;
-}
-.body div div.section ul li a:hover {
-    color:#404040;
-}
+/* */

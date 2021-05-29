@@ -28,7 +28,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
 
 export default {
   name: 'Home',
@@ -41,6 +44,18 @@ export default {
       'serviceLinks',
       'latestProjects',
     ]),
+  },
+  methods: {
+    ...mapActions([
+      'fetchServiceLinks',
+      'fetchLatestProjects',
+    ]),
+  },
+  mounted() {
+    return Promise.all([
+      this.fetchServiceLinks(),
+      this.fetchLatestProjects(),
+    ]);
   },
 };
 </script>
