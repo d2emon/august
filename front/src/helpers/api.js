@@ -34,6 +34,48 @@ export default {
             If you're having problems editing this website template, then don't hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forums/">Forums</a>.
           </p>
         `,
+        projects: [
+          {
+            id: 'logo1',
+            image: '/images/projects/logo1.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo2',
+            image: '/images/projects/logo2.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo3',
+            image: '/images/projects/logo3.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo4',
+            image: '/images/projects/logo4.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo5',
+            image: '/images/projects/logo5.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo6',
+            image: '/images/projects/logo6.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo7',
+            image: '/images/projects/logo7.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+          {
+            id: 'logo8',
+            image: '/images/projects/logo8.jpg',
+            client: 'Elizabeth Morrisson',
+          },
+        ],
       },
       link2: {
         id: 'link2',
@@ -44,6 +86,7 @@ export default {
           Our website templates are created with inspiration, checked for quality and originality and meticulously sliced and coded. What's more, they're absolutely free! You can do a lot with them. You can modify them. You can use them to design websites for clients, so long as you agree with the <a href="http://www.freewebsitetemplates.com/about/terms">Terms of Use</a>. You can even remove all our links if you want to.
         </p>
         `,
+        projects: [],
       },
       link3: {
         id: 'link3',
@@ -57,8 +100,8 @@ export default {
             If you're experiencing issues and concerns about this website template, join the discussion <a href="http://www.freewebsitetemplates.com/forums/">on our forum</a> and meet other people in the community who share the same interests with you.
           </p>
         `,
+        projects: [],
       },
-
     };
     return resolve(services[serviceId]);
   }),

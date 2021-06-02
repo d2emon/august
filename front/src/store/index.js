@@ -61,6 +61,7 @@ export default new Vuex.Store({
         id: service.id,
         title: service.title,
         to: `/services/${service.id}`,
+        toPortfolio: `/portfolio/service/${service.id}`,
         image: service.image,
       })))
       .then((services) => commit('setServices', services)),
@@ -71,7 +72,15 @@ export default new Vuex.Store({
         title: service.title,
         text: service.text,
         to: `/services/${service.id}`,
+        toPortfolio: `/portfolio/service/${service.id}`,
         image: service.image,
+        projects: service.projects.map((project) => ({
+          id: project.id,
+          title: project.title,
+          client: project.client,
+          to: `/project/${project.id}`,
+          image: project.image,
+        })),
       })),
     fetchLatestProjects: ({ commit }) => api
       .getLatestProjects()
@@ -79,7 +88,7 @@ export default new Vuex.Store({
         id: project.id,
         title: project.title,
         client: project.client,
-        to: `/services/${project.id}`,
+        to: `/project/${project.id}`,
         image: project.image,
       })))
       .then((projects) => commit('setLatestProjects', projects)),

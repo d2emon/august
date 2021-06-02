@@ -52,10 +52,8 @@ export default {
     ]),
   },
   mounted() {
-    return Promise.all([
-      this.fetchServices(),
-      this.fetchLatestProjects(),
-    ]);
+    this.fetchServices();
+    this.fetchLatestProjects();
   },
 };
 </script>
