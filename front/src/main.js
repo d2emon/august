@@ -6,7 +6,6 @@ import vuetify from './plugins/vuetify';
 import 'roboto-fontface/css/roboto/roboto-fontface.css';
 import '@mdi/font/css/materialdesignicons.css';
 import '@/assets/styles/fonts.css';
-import '@/assets/styles/sidebar.css';
 import '@/assets/styles/body.css';
 
 Vue.config.productionTip = false;

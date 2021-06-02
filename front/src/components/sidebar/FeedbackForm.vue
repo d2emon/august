@@ -27,7 +27,7 @@ export default {
 <style scoped>
 .v-card {
   background-color: transparent;
-  margin:700px 0 0;
+  margin:100px 0 0;
   text-align:center;
 }
 

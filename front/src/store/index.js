@@ -38,6 +38,10 @@ export default new Vuex.Store({
     latestProjects: [],
     socials: [],
     page: null,
+    article: null,
+    popularArticles: [],
+    recentArticles: [],
+    articleCategories: [],
   },
   mutations: {
     setServices: (state, value) => Vue.set(state, 'services', value),
@@ -45,6 +49,10 @@ export default new Vuex.Store({
     setLatestProjects: (state, value) => Vue.set(state, 'latestProjects', value),
     setSocials: (state, value) => Vue.set(state, 'socials', value),
     setPage: (state, value) => Vue.set(state, 'page', value),
+    setArticle: (state, value) => Vue.set(state, 'article', value),
+    setPopularArticles: (state, value) => Vue.set(state, 'popularArticles', value),
+    setRecentArticles: (state, value) => Vue.set(state, 'recentArticles', value),
+    setArticleCategories: (state, value) => Vue.set(state, 'articleCategories', value),
   },
   actions: {
     fetchServices: ({ commit }) => api
@@ -90,6 +98,49 @@ export default new Vuex.Store({
         text: page.text,
       }))
       .then((page) => commit('setPage', page)),
+    fetchBlog: ({ commit }) => api
+      .getBlog()
+      .then((blog) => {
+        const {
+          article,
+          popular,
+          recent,
+          categories,
+        } = blog;
+        commit('setArticle', {
+          id: article.id,
+          title: article.title,
+          published: article.published,
+          categories: article.categories.map((category) => ({
+            id: category.id,
+            title: category.title,
+            to: `/blog/category/${category.id}`,
+          })),
+          to: `/blog/article/${article.id}`,
+          toComments: `/blog/article/${article.id}/comments`,
+          prevPost: article.prevPost,
+          nextPost: article.nextPost,
+          text: article.text,
+          comments: article.comments,
+        });
+        commit('setPopularArticles', popular.map((a) => ({
+          id: a.id,
+          title: a.title,
+          published: a.published,
+          to: `/blog/article/${a.id}`,
+        })));
+        commit('setRecentArticles', recent.map((a) => ({
+          id: a.id,
+          title: a.title,
+          published: a.published,
+          to: `/blog/article/${a.id}`,
+        })));
+        commit('setArticleCategories', categories.map((category) => ({
+          id: category.id,
+          title: category.title,
+          to: `/blog/category/${category.id}`,
+        })));
+      }),
   },
   modules: {
   },

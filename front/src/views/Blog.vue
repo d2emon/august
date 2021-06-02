@@ -1,92 +1,72 @@
 <template>
   <div class="blog">
-    <h2>Its' All About Image</h2>
-    <img src="@/assets/images/photo-shoot.jpg" alt="">
-    <p>
-      This website template has been designed by <a href="http://www.freewebsitetemplates.com/">Free Website Templates</a> for you, for free. You can replace all this text with your own text.
-    </p>
-    <p>
-      You can remove any link to our website from this website template, you're free to use this
-      website template without linking back to us.
-    </p>
-    <p>
-      If you're having problems editing this website template, then don't hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forums/">Forums</a>.
-    </p>
-    <div class="share">
-      <span>Posted Mar 22, 2023 in <a href="#">Brand</a>, <a href="#">Production</a>,
-        <a href="#">Marketing</a></span> <span><a href="#">0 Comments</a></span>
+    <div
+      class="article"
+      v-if="article"
+    >
+      <h2>{{ article.title }}</h2>
+      <div
+        class="article-content"
+        v-html="article.text"
+      />
+      <div class="share">
+        <span>
+          Опубликовано {{ article.published }} в
+          <template v-for="(category, categoryId) in article.categories">
+            <router-link
+              :key="category.id"
+              :to="category.to"
+            >
+              {{ category.title }}
+            </router-link>
+            <template v-if="categoryId < article.categories.length - 1">, </template>
+          </template>
+        </span>
+        <span><a :href="article.toComments">Комментарии {{ article.comments }}</a></span>
+      </div>
+      <div class="paging">
+        <router-link :to="article.prevPost" class="prev-post">
+          &#60;&#60; Предыдущая Запись
+        </router-link>
+        <router-link :to="article.nextPost" class="next-post">
+          Следующая Запись &#62;&#62;
+        </router-link>
+      </div>
     </div>
-    <div class="paging">
-      <a href="#">&#60;&#60; Older Post</a> <a href="#">Newer Posts &#62;&#62;</a>
-    </div>
+
     <div class="section">
       <div>
-        <h3>Recent blog posts</h3>
-        <ul>
-          <li>
-            <a href="#">It’s All About Image</a> <span>Posted Mar 22, 2023</span>
-          </li>
-          <li>
-            <a href="#">Choosing The Right Font For Your Logo</a> <span>Posted Mar 21, 2023</span>
-          </li>
-          <li>
-            <a href="#">Outsmart The Competition</a> <span>Posted Mar 20, 2023</span>
+        <h3>Новые статьи</h3>
+        <ul v-if="recentArticles">
+          <li
+            v-for="a in recentArticles"
+            :key="a.id"
+          >
+            <router-link :to="a.to">{{ a.title }}</router-link><br />
+            <span>{{ a.published }}</span>
           </li>
         </ul>
       </div>
       <div>
-        <h3>Popular blog posts</h3>
-        <ul>
-          <li>
-            <a href="#">We Can Get You To The Top</a> <span>Posted Mar 19, 2023</span>
-          </li>
-          <li>
-            <a href="#">Think Of It As Investment</a> <span>Posted Mar 20, 2023</span>
-          </li>
-          <li>
-            <a href="#">Behind Every Success Is Planning And Anticipation</a>
-            <span>Posted Mar 21, 2023</span>
+        <h3>Популярные статьи</h3>
+        <ul v-if="popularArticles">
+          <li
+            v-for="a in popularArticles"
+            :key="a.id"
+          >
+            <router-link :to="a.to">{{ a.title }}</router-link><br />
+            <span>{{ a.published }}</span>
           </li>
         </ul>
       </div>
       <div class="categories">
-        <h3>Categories</h3>
-        <ul>
-          <li>
-            <a href="#">Brand</a>
-          </li>
-          <li>
-            <a href="#">Creative</a>
-          </li>
-          <li>
-            <a href="#">Production</a>
-          </li>
-          <li>
-            <a href="#">SEO</a>
-          </li>
-          <li>
-            <a href="#">Marketing</a>
-          </li>
-          <li>
-            <a href="#">Copywriting</a>
-          </li>
-          <li>
-            <a href="#">Planning</a>
-          </li>
-          <li>
-            <a href="#">Brandding</a>
-          </li>
-          <li>
-            <a href="#">Advertising</a>
-          </li>
-          <li>
-            <a href="#">Web</a>
-          </li>
-          <li>
-            <a href="#">Design</a>
-          </li>
-          <li>
-            <a href="#">Conversation</a>
+        <h3>Категории</h3>
+        <ul v-if="articleCategories">
+          <li
+            v-for="category in articleCategories"
+            :key="category.id"
+          >
+            <router-link :to="category.to">{{ category.title }}</router-link>
           </li>
         </ul>
       </div>
@@ -95,36 +75,58 @@
 </template>
 
 <script>
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
+
 export default {
   name: 'Blog',
+  computed: {
+    ...mapState([
+      'article',
+      'recentArticles',
+      'popularArticles',
+      'articleCategories',
+    ]),
+  },
+  methods: {
+    ...mapActions(['fetchBlog']),
+  },
+  mounted() {
+    this.fetchBlog();
+  },
 };
 </script>
 
 <style scoped>
-.body .blog img {
+.article {
+  margin: 0;
+}
+.article-content img {
   margin:28px 0 0 21px;
 }
-.body .blog p {
+.article-content p {
   font-size:13px;
   margin:14px 0 25px;
 }
-.body .blog .share {
+.share {
   background:url(../assets/images/bg-share.jpg) repeat-x;
   height:42px;
 }
-.body .blog .share span:first-child {
+.share span:first-child {
   line-height: 43px;
   font-family:"Myriad Pro", sans-serif;
   font-size:11px;
   color:#808080;
   float:left;
 }
-.body .blog .share span:first-child a {
+.share span:first-child a {
   color:#333333;
   text-decoration:none;
   display:inline-block;
 }
-.body .blog .share span {
+.share span {
   float:right;
   color:#333333;
   font-family:"Myriad Pro", sans-serif;
@@ -132,21 +134,21 @@ export default {
   line-height: 43px;
   padding:0 20px 0 0;
 }
-.body .blog .share span a {
+.share span a {
   color:#333333;
   text-decoration:none;
 }
-.body .blog .share span a:hover {
+.share span a:hover {
   text-decoration:underline;
 }
-.body .blog .paging {
+.paging {
   overflow:hidden;
 }
-.body .blog .paging a:first-child {
+.paging a.prev-post {
   float:left;
   padding:0;
 }
-.body .blog .paging a {
+.paging a {
   color:#333333;
   font-family:"Myriad Pro", sans-serif;
   font-size:11px;
@@ -156,20 +158,20 @@ export default {
   float:right;
   padding:0 30px 0 0;
 }
-.body .blog .paging a:hover, .body .blog .share span:first-child a:hover {
+.paging a:hover, .share span:first-child a:hover {
   text-decoration:underline;
 }
-.body .blog .section {
-  margin:225px 0 0;
+.section {
+  margin: 0;
   background-color:#f4f4f4;
   -moz-box-shadow: 0 0 9px -1px #888888 inset;
   -webkit-box-shadow: 0 0 9px -1px #888888 inset;
   box-shadow: 0 0 9px -1px #888888 inset;
 }
-.body .blog .section div:first-child {
+.section div:first-child {
   background:none;
 }
-.body .blog .section div {
+.section div {
   width:195px;
   background:url(../assets/images/bg-border.jpg) repeat-y left top;
   float:left;
@@ -177,7 +179,7 @@ export default {
   text-align:left;
   padding:0 20px;
 }
-.body .blog .section div h3 {
+.section div h3 {
   font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size:16px;
   color:#7d7d7d;
@@ -185,13 +187,13 @@ export default {
   background:none;
   margin:30px 0 15px;
 }
-.body .blog .section div ul li {
+.section div ul li {
   text-align:left;
   height:auto;
   background:none;
   margin:0 0 15px!important;
 }
-.body .blog .section div ul li a {
+.section div ul li a {
   font-family:"Myriad Pro", sans-serif;
   text-decoration:none;
   font-size:13px;
@@ -199,11 +201,11 @@ export default {
   color:#414141;
   margin:0 0 3px!important;
 }
-.body .blog .section div ul li a:hover {
+.section div ul li a:hover {
   text-decoration:underline;
   color:#414141;
 }
-.body .blog .section .categories ul li {
+.section .categories ul li {
   width:95px;
 }
 </style>
