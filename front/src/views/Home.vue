@@ -11,7 +11,7 @@
 
     <what-we-do
       title="Что Мы Делаем"
-      :links="serviceLinks"
+      :links="services"
     >
       <p>
         This website template has been designed by Free Website Templates for you, for free.
@@ -41,19 +41,19 @@ export default {
   },
   computed: {
     ...mapState([
-      'serviceLinks',
+      'services',
       'latestProjects',
     ]),
   },
   methods: {
     ...mapActions([
-      'fetchServiceLinks',
+      'fetchServices',
       'fetchLatestProjects',
     ]),
   },
   mounted() {
     return Promise.all([
-      this.fetchServiceLinks(),
+      this.fetchServices(),
       this.fetchLatestProjects(),
     ]);
   },

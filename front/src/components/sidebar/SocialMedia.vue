@@ -1,9 +1,9 @@
 <template>
   <div class="connect">
     <a
-      v-for="(social, socialId) in socials"
-      :key="socialId"
-      :id="socialId"
+      v-for="social in socials"
+      :key="social.id"
+      :id="social.id"
       :href="social.href"
       :title="social.title"
       class="social-link"

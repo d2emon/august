@@ -2,23 +2,29 @@
   <div class="about">
     <div
       v-if="page"
-      v-html="page"
+      v-html="page.text"
     />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
 
 export default {
   name: 'About',
   computed: {
     ...mapState([
-      'pages',
+      'page',
     ]),
-    page() {
-      return this.pages && this.pages.about;
-    },
+  },
+  methods: {
+    ...mapActions(['fetchPage']),
+  },
+  mounted() {
+    this.fetchPage('about');
   },
 };
 </script>

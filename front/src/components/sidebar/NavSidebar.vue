@@ -3,13 +3,16 @@
     <logo id="logo" />
     <nav-menu :navigation="navigation" />
     <feedback-form />
-    <social-media :socials="social" />
+    <social-media :socials="socials" />
     <div class="copyright">Автор сайта: {{ author }}</div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
 
 export default {
   name: 'NavSidebar',
@@ -23,8 +26,14 @@ export default {
     ...mapState([
       'author',
       'navigation',
-      'social',
+      'socials',
     ]),
+  },
+  methods: {
+    ...mapActions(['fetchSocials']),
+  },
+  mounted() {
+    this.fetchSocials();
   },
 };
 </script>

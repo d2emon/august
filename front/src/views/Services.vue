@@ -1,52 +1,66 @@
 <template>
   <div class="services">
-    <h2>Design</h2>
+    <h2>Наши услуги</h2>
 
     <ul
       class="navigation"
-      v-if="serviceLinks"
-    >
-      <li
-        v-for="(link, linkId) in serviceLinks"
-        :key="linkId"
-      >
-        <router-link :to="link.to">{{link.title}}</router-link>
-      </li>
-    </ul>
-
-    <ul
       v-if="services"
     >
       <li
-        v-for="(service, serviceId) in services"
-        :key="serviceId"
+        v-for="service in services"
+        :key="service.id"
       >
-        <h3><span>{{ service.title }}</span></h3>
-        <div>
-          <img
-            :src="service.img"
-            :alt="service.title"
-            :title="service.title"
-          />
-        </div>
-        <div
-          v-html="service.text"
-        />
+        <router-link :to="service.to">{{service.title}}</router-link>
       </li>
     </ul>
+
+    <div
+      class="service"
+      v-if="service"
+    >
+      <h3><span>{{ service.title }}</span></h3>
+      <div>
+        <img
+          :src="service.image"
+          :alt="service.title"
+          :title="service.title"
+        />
+      </div>
+      <div
+        v-html="service.text"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {
+  mapActions,
+  mapState,
+} from 'vuex';
 
 export default {
   name: 'Services',
   computed: {
     ...mapState([
-      'serviceLinks',
       'services',
+      'service',
     ]),
+  },
+  methods: {
+    ...mapActions([
+      'fetchServices',
+      'fetchService',
+    ]),
+  },
+  mounted() {
+    this.fetchServices();
+    this.fetchService(this.$route.params.service);
+  },
+  watch: {
+    $route() {
+      this.fetchService(this.$route.params.service);
+    },
   },
 };
 </script>
@@ -154,6 +168,44 @@ export default {
   float:left;
 }
 .body .services ul li p {
+  float: right;
+  padding: 0 25px 0 0;
+  width: 400px;
+  margin: 20px 0;
+  font-family: 'Conv_Muli-Regular';
+  font-size:13px;
+}
+
+.service {
+  clear: both;
+  padding: 0 0 195px;
+  margin: 0;
+}
+.service h3 {
+  background: url("../assets/images/border.jpg") repeat-x scroll right center transparent;
+  width:665px;
+  overflow:hidden;
+  margin:0 21px;
+}
+.service h3 span {
+  background-color: #FFFFFF;
+  color: #7D7D7D;
+  display: inline;
+  font-family: 'Conv_Muli-Regular';
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 24px;
+  margin: 22px 0;
+  padding: 0 11px 0 0;
+}
+.service div {
+  margin:35px 0 0 29px;
+  width:251px;
+  min-height:290px;
+  height:auto;
+  float:left;
+}
+.service p {
   float: right;
   padding: 0 25px 0 0;
   width: 400px;
