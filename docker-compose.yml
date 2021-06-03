@@ -4,40 +4,40 @@ services:
     image: mongo
     restart: always
     ports:
-    - 27017:27017
+      - 27017:27017
     volumes:
-    - ./data/db:/data/db
-  # backend:
-  #   restart: always
-  #   build: ./back
-  #   environment:
-  #     APP_NAME: chordlib:server
-  #     DEBUG: chordlib:*
-  #     PORT: 4000
-  #     MONGO_URI: mongodb://mongo/chords
-  #     FOLDERS.WIKI: ./files/public/pages/wiki
-  #     FOLDERS.ARTIST_PAGES: ./files/artists
-  #   ports:
-  #   - "4000:4000"
-  #   links:
-  #   - mongo
-  #   volumes:
-  #   - ./back/src:/app/src
-  #   - ./back/public:/app/public
+      - ./data/db:/data/db
+  backend:
+    # restart: always
+    build: ./back
+    environment:
+      APP_NAME: august:server
+      DEBUG: august:*
+      PORT: 4000
+      MONGO_URI: mongodb://mongo/august
+    ports:
+      - 4000:4000
+    links:
+      - mongo
+    volumes:
+      - ./back/src:/usr/src/app/src
+      - ./back/dist:/usr/src/app/dist
+      - ./back/node_modules:/usr/src/app/node_modules
+      - ./front/public:/usr/src//app/public
   frontend:
     restart: always
     build: ./front
     ports:
-    - 8080:8080
-    # links:
-    # - backend
+      - 8080:8080
+    links:
+      - backend
     volumes:
-    - ./front/src:/app/src
-    - ./front/public:/app/public
+      - ./front/src:/app/src
+      - ./front/public:/app/public
   mongo-express:
     image: mongo-express
     restart: always
     ports:
-    - 8081:8081
+      - 8081:8081
     links:
-    - mongo
+      - mongo
