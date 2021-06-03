@@ -1,5 +1,10 @@
 <template>
   <div class="about">
+    <navigation-bar
+      title="О компании"
+      :links="links"
+    />
+
     <div
       v-if="page"
       v-html="page.text"
@@ -15,15 +20,30 @@ import {
 
 export default {
   name: 'About',
+  components: {
+    NavigationBar: () => import('@/components/NavigationBar.vue'),
+  },
   computed: {
     ...mapState([
       'page',
+      'pages',
     ]),
+    links() {
+      return this.pages.map((service) => ({
+        id: service.id,
+        title: service.title,
+        to: service.to,
+      }));
+    },
   },
   methods: {
-    ...mapActions(['fetchPage']),
+    ...mapActions([
+      'fetchPages',
+      'fetchPage',
+    ]),
   },
   mounted() {
+    this.fetchPages();
     this.fetchPage('about');
   },
 };

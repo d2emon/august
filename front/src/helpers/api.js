@@ -142,6 +142,23 @@ export default {
       href: 'http://freewebsitetemplates.com/go/youtube/',
     },
   ]),
+  getPages: () => Promise.resolve([
+    {
+      id: 'link1',
+      title: 'Дизайн',
+      image: '/images/services/design.jpg',
+    },
+    {
+      id: 'link2',
+      title: 'SEO',
+      image: '/images/services/seo.jpg',
+    },
+    {
+      id: 'link3',
+      title: 'Копирайтинг',
+      image: '/images/services/design.jpg',
+    },
+  ]),
   getPage: (pageId) => new Promise((resolve) => {
     const pages = {
       about: {

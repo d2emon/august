@@ -1,18 +1,10 @@
 <template>
   <div class="portfolio">
-    <h2>Портфолио</h2>
-    <ul
-      class="navigation"
-      v-if="services"
-    >
-      <li
-        v-for="service in services"
-        :key="service.id"
-        :id="service.id"
-      >
-        <router-link :to="service.toPortfolio">{{service.title}}</router-link>
-      </li>
-    </ul>
+    <navigation-bar
+      title="Портфолио"
+      :links="links"
+    />
+
     <div
       v-if="service"
       class="content"
@@ -42,11 +34,21 @@ import {
 
 export default {
   name: 'Portfolio',
+  components: {
+    NavigationBar: () => import('@/components/NavigationBar.vue'),
+  },
   computed: {
     ...mapState([
       'services',
       'service',
     ]),
+    links() {
+      return this.services.map((service) => ({
+        id: service.id,
+        title: service.title,
+        to: service.toPortfolio,
+      }));
+    },
   },
   methods: {
     ...mapActions([

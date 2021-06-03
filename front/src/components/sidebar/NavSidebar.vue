@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <logo id="logo" />
+    <logo id="logo" :title="title" />
     <nav-menu :navigation="navigation" />
     <feedback-form />
     <social-media :socials="socials" />
@@ -25,6 +25,7 @@ export default {
   computed: {
     ...mapState([
       'author',
+      'title',
       'navigation',
       'socials',
     ]),

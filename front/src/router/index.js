@@ -47,11 +47,6 @@ const routes = [
     ],
   },
   {
-    path: '/contacts',
-    name: 'Contacts',
-    component: () => import('../views/Contacts.vue'),
-  },
-  {
     path: '/blog',
     name: 'Blog',
     component: () => import('../views/Blog.vue'),

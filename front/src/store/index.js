@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     author: 'Грекова Т. В., 2021',
+    title: 'Рекламное агентство "Август"',
     navigation: [
       {
         title: 'Главная',
@@ -25,10 +26,6 @@ export default new Vuex.Store({
         to: '/portfolio',
       },
       {
-        title: 'Контакты',
-        to: '/contacts',
-      },
-      {
         title: 'Блог',
         to: '/blog',
       },
@@ -37,6 +34,7 @@ export default new Vuex.Store({
     service: null,
     latestProjects: [],
     socials: [],
+    pages: [],
     page: null,
     article: null,
     popularArticles: [],
@@ -48,6 +46,7 @@ export default new Vuex.Store({
     setService: (state, value) => Vue.set(state, 'service', value),
     setLatestProjects: (state, value) => Vue.set(state, 'latestProjects', value),
     setSocials: (state, value) => Vue.set(state, 'socials', value),
+    setPages: (state, value) => Vue.set(state, 'pages', value),
     setPage: (state, value) => Vue.set(state, 'page', value),
     setArticle: (state, value) => Vue.set(state, 'article', value),
     setPopularArticles: (state, value) => Vue.set(state, 'popularArticles', value),
@@ -100,6 +99,15 @@ export default new Vuex.Store({
         href: social.href,
       })))
       .then((socials) => commit('setSocials', socials)),
+    fetchPages: ({ commit }) => api
+      .getPages()
+      .then((pages) => pages.map((page) => ({
+        id: page.id,
+        title: page.title,
+        to: `/pages/${page.id}`,
+        image: page.image,
+      })))
+      .then((pages) => commit('setPages', pages)),
     fetchPage: ({ commit }, pageId) => api
       .getPage(pageId)
       .then((page) => ({
