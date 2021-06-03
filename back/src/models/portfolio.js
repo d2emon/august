@@ -1,10 +1,14 @@
 import mongoose, { Schema } from 'mongoose';
 
-const serviceSchema = new Schema({
+const portfolioSchema = new Schema({
     title: String,
     short: String,
     image: String,
     description: String,
+    date: Date,
+    isVisible: Boolean,
+    viewed: Number,
+    serviceId: Schema.Types.ObjectId,
 });
 
 /*
@@ -14,4 +18,4 @@ locationSchema.set('toJSON', {
 });
  */
 
-export default mongoose.model('Service', serviceSchema);
+export default mongoose.model('Portfolio', portfolioSchema);

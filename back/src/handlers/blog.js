@@ -1,5 +1,5 @@
-import Article from '../models/article';
-import Category from '../models/category';
+import Article from '../models/dummies/article';
+import Category from '../models/dummies/category';
 import modelHandler from '../helpers/modelHandler';
 
 export const articles = modelHandler(Article, (data) => (new Article(data)));
