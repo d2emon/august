@@ -1,35 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import api from '../helpers/api';
+import config from '../helpers/config';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    author: 'Грекова Т. В., 2021',
-    title: 'Рекламное агентство "Август"',
-    navigation: [
-      {
-        title: 'Главная',
-        to: '/index',
-      },
-      {
-        title: 'О нас',
-        to: '/about',
-      },
-      {
-        title: 'Услуги',
-        to: '/services',
-      },
-      {
-        title: 'Портфолио',
-        to: '/portfolio',
-      },
-      {
-        title: 'Блог',
-        to: '/blog',
-      },
-    ],
+    author: config.author,
+    title: config.title,
+    navigation: config.navigation,
+
     services: [],
     service: null,
     latestProjects: [],
@@ -71,10 +52,6 @@ export default new Vuex.Store({
       .then((pages) => commit('setPages', pages)),
     fetchPage: ({ commit }, pageId) => api
       .getPage(pageId)
-      .then((page) => ({
-        id: page.id,
-        text: page.text,
-      }))
       .then((page) => commit('setPage', page)),
     fetchBlog: ({ commit }) => api
       .getBlog()
