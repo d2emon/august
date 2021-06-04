@@ -2,9 +2,19 @@ import Article from '../models/dummies/article';
 import Category from '../models/dummies/category';
 import modelHandler from '../helpers/modelHandler';
 
-export const articles = modelHandler(Article, (data) => (new Article(data)));
+export const articles = modelHandler(
+    'articles',
+    'article',
+    Article,
+    (data) => (new Article(data)),
+);
 
-export const categories = modelHandler(Category, (data) => (new Category(data)));
+export const categories = modelHandler(
+    'categories',
+    'category',
+    Category,
+    (data) => (new Category(data)),
+);
 
 export const getBlog = async (req, res) => {
     try {

@@ -1,6 +1,6 @@
 // import bodyParser from 'body-parser'
 // import cookieParser from 'cookie-parser'; // Deprecated
-// import cors from 'cors';
+import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import logger from 'morgan';
@@ -21,7 +21,7 @@ const app = express();
 const publicPath = path.join(__dirname, '..', 'public');
 
 app.use(logger('dev'));
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());

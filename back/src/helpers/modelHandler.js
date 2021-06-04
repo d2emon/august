@@ -1,9 +1,9 @@
-export default (model, newModel) => ({
+export default (itemsKey, itemKey, model, newModel) => ({
     getItems: async (req, res) => {
         try {
             const query = {};
-            const services = await model.find(query);
-            return res.json({ services });
+            const items = await model.find(query);
+            return res.json({ [itemsKey]: items });
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }
@@ -21,8 +21,8 @@ export default (model, newModel) => ({
 
     getItem: async (req, res) => {
         try {
-            const service = await model.findById(req.params.id);
-            return res.json({ service });
+            const item = await model.findById(req.params.id);
+            return res.json({ [itemKey]: item });
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }
