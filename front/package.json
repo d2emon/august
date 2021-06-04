@@ -40,11 +40,12 @@
       "plugin:vue/essential",
       "@vue/airbnb"
     ],
-    "linebreak-style": ["error", "windows"],
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "linebreak-style": 0
+    }
   },
   "browserslist": [
     "> 1%",
