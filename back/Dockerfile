@@ -17,11 +17,11 @@ COPY .babelrc ./
 COPY src ./src
 
 # Envs
-ENV APP_NAME trans
-ENV DEBUG trans:*
-ENV MONGO_URI mongodb://mongo/trans
+ENV APP_NAME august
+ENV DEBUG august:*
+ENV MONGO_URI mongodb://mongo/august
 ENV NODE_PATH ./src
-ENV PORT 3000
+ENV PORT 4000
 
 # Port to expose
 EXPOSE $PORT
