@@ -77,6 +77,18 @@ const routes = [
         path: '/about',
         name: 'About',
         component: () => import('../views/About.vue'),
+        children: [
+          {
+            path: '',
+            name: 'PageList',
+            // component: () => import('../views/About.vue'),
+          },
+          {
+            path: ':id',
+            name: 'Page',
+            // component: () => import('../views/About.vue'),
+          },
+        ],
       },
       {
         path: '/services',

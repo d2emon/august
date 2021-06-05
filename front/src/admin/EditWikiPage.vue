@@ -45,8 +45,8 @@ export default {
           exact: true,
         },
         {
-          text: `${this.page.title}`,
-          to: `/admin/wiki/${this.page.id}`,
+          text: `${this.page ? this.page.title : 'Страница'}`,
+          to: `/admin/wiki/${this.page ? this.page.id : ''}`,
           exact: true,
         },
       ];

@@ -9,31 +9,35 @@
         label="Заголовок"
         v-model="title"
       />
-      <v-textarea
+      <markdown-preview
         label="Статья"
         v-model="text"
       />
+
+      <v-card-actions>
+        <v-btn
+          color="success"
+          @click="submit"
+        >
+          Сохранить
+        </v-btn>
+        <v-btn
+          color="primary"
+          :to="`/pages/${slug}`"
+        >
+          Перейти
+        </v-btn>
+      </v-card-actions>
     </v-form>
-    <v-card-actions>
-      <v-btn
-        color="success"
-        @click="submit"
-      >
-        Сохранить
-      </v-btn>
-      <v-btn
-        color="primary"
-        :to="`/pages/${slug}`"
-      >
-        Перейти
-      </v-btn>
-    </v-card-actions>
   </v-container>
 </template>
 
 <script>
 export default {
   name: 'WikiForm',
+  components: {
+    MarkdownPreview: () => import('./MarkdownPreview.vue'),
+  },
   data: () => ({
     slug: '',
     title: '',
@@ -41,6 +45,9 @@ export default {
   }),
   methods: {
     loadValues(values) {
+      if (!values) {
+        return;
+      }
       this.slug = values.slug || '';
       this.title = values.title || '';
       this.text = values.text || '';

@@ -6,9 +6,6 @@
     <v-card
       min-height="70vh"
     >
-      <v-card-title>
-        {{ pageId }}
-      </v-card-title>
       <wiki-form
         :form-values="newItem"
         @submit="submit"

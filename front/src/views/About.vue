@@ -1,13 +1,13 @@
 <template>
   <div class="about">
     <navigation-bar
-      title="О компании"
+      title="О нас"
       :links="links"
     />
 
     <div
       v-if="page"
-      v-html="page.text"
+      v-html="page.html"
     />
   </div>
 </template>
@@ -17,6 +17,7 @@ import {
   mapActions,
   mapState,
 } from 'vuex';
+import config from '@/helpers/config';
 
 export default {
   name: 'About',
@@ -29,11 +30,7 @@ export default {
       'pages',
     ]),
     links() {
-      return this.pages.map((service) => ({
-        id: service.id,
-        title: service.title,
-        to: service.to,
-      }));
+      return this.pages.filter((page) => (page.slug !== config.defaultPage));
     },
   },
   methods: {
@@ -44,7 +41,12 @@ export default {
   },
   mounted() {
     this.fetchPages();
-    this.fetchPage('about');
+    this.fetchPage(this.$route.params.id || config.defaultAboutPage);
+  },
+  watch: {
+    $route(value) {
+      this.fetchPage(value.params.id || config.defaultAboutPage);
+    },
   },
 };
 </script>

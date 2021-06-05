@@ -24,4 +24,6 @@ export default {
       to: '/blog',
     },
   ],
+  defaultPage: 'index',
+  defaultAboutPage: 'about',
 };

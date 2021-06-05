@@ -1,25 +1,14 @@
 <template>
   <div class="home">
-    <h2>Welcome to FineMinds Marketing Solutions</h2>
-
-    <p>
-      This website template has been designed by Free Website Templates for you, for free.
-      You can replace all this text with your own text.
-    </p>
-
-    <img src="/images/tree.jpg" alt="">
+    <div
+      v-if="page"
+      v-html="page.html"
+    />
 
     <what-we-do
       title="Что Мы Делаем"
       :links="services"
-    >
-      <p>
-        This website template has been designed by Free Website Templates for you, for free.
-        You can replace all this text with your own text. You can remove any link to our
-        website from this website template, you're free to use this website template without
-        linking back to us.
-      </p>
-    </what-we-do>
+    />
     <latest-projects
       title="Последние проекты"
       :projects="latestProjects"
@@ -32,6 +21,7 @@ import {
   mapActions,
   mapState,
 } from 'vuex';
+import config from '@/helpers/config';
 
 export default {
   name: 'Home',
@@ -43,17 +33,20 @@ export default {
     ...mapState([
       'services',
       'latestProjects',
+      'page',
     ]),
   },
   methods: {
     ...mapActions([
       'fetchServices',
       'fetchLatestProjects',
+      'fetchPage',
     ]),
   },
   mounted() {
     this.fetchServices();
     this.fetchLatestProjects();
+    this.fetchPage(config.defaultPage);
   },
 };
 </script>

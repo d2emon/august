@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from './config';
+import markdown from './markdown';
 
 const api = axios.create({
   baseURL: config.apiUrl,
@@ -30,8 +31,9 @@ const preparePage = (page) => (page ? {
   id: page.id,
   slug: page.slug,
   title: page.title,
-  to: `/pages/${page.slug}`,
+  to: `/about/${page.slug}`,
   text: page.text,
+  html: markdown.render(page.text || ''),
 } : null);
 const prepareBlog = (data) => {
   const {
