@@ -1,9 +1,18 @@
-import Page from '../models/dummies/page';
+import Wiki from '../models/wiki';
 import modelHandler from '../helpers/modelHandler';
 
 export default modelHandler(
     'pages',
     'page',
-    Page,
-    (data) => (new Page(data)),
+    Wiki,
+    (data) => (new Wiki(data)),
 );
+
+export const getWikiBySlug = async (req, res) => {
+    try {
+        const page = await Wiki.findOne(req.params.slug);
+        return res.json({ page });
+    } catch (e) {
+        return res.status(500).json({ error: e.message });
+    }
+}

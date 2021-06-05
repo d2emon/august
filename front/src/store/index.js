@@ -47,12 +47,17 @@ export default new Vuex.Store({
     fetchSocials: ({ commit }) => api
       .getSocials()
       .then((socials) => commit('setSocials', socials)),
-    fetchPages: ({ commit }) => api
-      .getPages()
+
+    fetchPages: ({ commit }) => api.getPages()
       .then((pages) => commit('setPages', pages)),
-    fetchPage: ({ commit }, pageId) => api
-      .getPage(pageId)
+    fetchPage: ({ commit }, pageId) => api.getPage(pageId)
       .then((page) => commit('setPage', page)),
+    fetchPageById: ({ commit }, pageId) => api.getPageById(pageId)
+      .then((page) => commit('setPage', page)),
+    addPage: (context, values) => api.addPage(values),
+    updatePage: (context, { id, values }) => api.setPage(id, values),
+    deletePage: (context, id) => api.deletePage(id),
+
     fetchBlog: ({ commit }) => api
       .getBlog()
       .then((blog) => {

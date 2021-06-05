@@ -41,7 +41,17 @@ const routes = [
       {
         path: 'wiki',
         name: 'AdminWiki',
-        component: () => import('../admin/Home.vue'),
+        component: () => import('../admin/WikiPages.vue'),
+      },
+      {
+        path: 'wiki/add',
+        name: 'AdminWikiItem',
+        component: () => import('../admin/AddWikiPage.vue'),
+      },
+      {
+        path: 'wiki/:id',
+        name: 'AdminWikiItem',
+        component: () => import('../admin/EditWikiPage.vue'),
       },
       {
         path: 'blog',

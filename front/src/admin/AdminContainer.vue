@@ -28,12 +28,7 @@
           </v-col>
 
           <v-col>
-            <v-sheet
-              min-height="70vh"
-              rounded="lg"
-            >
-              <router-view/>
-            </v-sheet>
+            <router-view/>
           </v-col>
         </v-row>
       </v-container>
