@@ -23,7 +23,7 @@
         </v-btn>
         <v-btn
           color="primary"
-          :to="`/pages/${slug}`"
+          :to="(slug === 'index') ? '/' : `/about/${slug}`"
         >
           Перейти
         </v-btn>
