@@ -1,7 +1,7 @@
 import markdown from '@/helpers/markdown';
 import api from './api';
 
-export const prepareProject = (project) => (project ? {
+const prepareProject = (project) => (project ? {
   id: project.id,
   slug: project.slug,
   title: project.title,
@@ -26,5 +26,7 @@ export default {
   deleteProject: (projectId) => api.delete(`/project/${projectId}`),
 
   getLatestProjects: () => api.get('/project/latest')
+    .then(({ data }) => (data.projects ? data.projects.map(prepareProject) : [])),
+  getServiceProjects: (serviceId) => api.get(`/project/service/${serviceId}`)
     .then(({ data }) => (data.projects ? data.projects.map(prepareProject) : [])),
 };

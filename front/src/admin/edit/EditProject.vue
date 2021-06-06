@@ -8,6 +8,7 @@
     >
       <project-form
         :form-values="item"
+        :services="services"
         @submit="submit"
       />
     </edit-item>
@@ -29,6 +30,7 @@ export default {
   computed: {
     ...mapState([
       'project',
+      'services',
     ]),
     itemId() {
       return this.$route.params.id;
@@ -42,8 +44,10 @@ export default {
       'fetchProjectById',
       'addProject',
       'updateProject',
+      'fetchServices',
     ]),
     load(itemId) {
+      this.fetchServices();
       this.fetchProjectById(itemId);
     },
     submit({ id, values }) {

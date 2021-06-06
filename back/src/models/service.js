@@ -4,7 +4,6 @@ const serviceSchema = new Schema({
     slug: String,
     title: String,
     image: String,
-    // projects: Array,
     text: String,
 });
 

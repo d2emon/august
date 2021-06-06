@@ -9,7 +9,7 @@ const projectSchema = new Schema({
     date: Date,
     // isVisible: Boolean,
     // viewed: Number,
-    serviceId: Schema.Types.ObjectId,
+    serviceId: { type: Schema.Types.ObjectId, ref: 'Service' },
 });
 
 projectSchema.options.toJSON = {

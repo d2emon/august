@@ -11,10 +11,10 @@
     >
       <h3><span>{{ service.title }}</span></h3>
       <ul
-        v-if="service.projects"
+        v-if="projects"
       >
         <li
-          v-for="project in service.projects"
+          v-for="project in projects"
           :key="project.id"
         >
           <a :href="project.image"><img :src="project.image" alt=""></a>
@@ -41,6 +41,7 @@ export default {
     ...mapState([
       'services',
       'service',
+      'projects',
     ]),
     links() {
       return this.services.map((service) => ({
@@ -54,11 +55,15 @@ export default {
     ...mapActions([
       'fetchServices',
       'fetchService',
+      'fetchServiceProjects',
     ]),
-    load(serviceId) {
-      this.fetchServices();
+    async load(serviceId) {
+      await this.fetchServices();
       if (serviceId) {
-        this.fetchService(serviceId);
+        await this.fetchService(serviceId);
+        if (this.service) {
+          await this.fetchServiceProjects(this.service.id);
+        }
       }
     },
   },
@@ -67,7 +72,7 @@ export default {
   },
   watch: {
     $route(value) {
-      this.fetchService(value.params.service);
+      this.load(value.params.service);
     },
   },
 };

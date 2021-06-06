@@ -58,6 +58,7 @@ export default {
 
   getProjects: projectApi.getProjects,
   getLatestProjects: projectApi.getLatestProjects,
+  getServiceProjects: projectApi.getServiceProjects,
   getProject: projectApi.getProject,
   getProjectById: projectApi.getProjectById,
   addProject: projectApi.addProject,

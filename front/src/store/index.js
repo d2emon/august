@@ -52,6 +52,8 @@ export default new Vuex.Store({
       .then((projects) => commit('setProjects', projects)),
     fetchLatestProjects: ({ commit }) => api.getLatestProjects()
       .then((projects) => commit('setProjects', projects)),
+    fetchServiceProjects: ({ commit }, serviceId) => api.getServiceProjects(serviceId)
+      .then((projects) => commit('setProjects', projects)),
     fetchProject: ({ commit }, slug) => api.getProject(slug)
       .then((project) => commit('setProject', project)),
     fetchProjectById: ({ commit }, id) => api.getProjectById(id)

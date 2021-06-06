@@ -1,6 +1,5 @@
 import markdown from '@/helpers/markdown';
 import api from './api';
-import { prepareProject } from './project';
 
 const prepareService = (service) => (service ? {
   id: service.id,
@@ -9,7 +8,6 @@ const prepareService = (service) => (service ? {
   to: `/services/${service.slug}`,
   toPortfolio: `/portfolio/service/${service.slug}`,
   image: service.image,
-  projects: service.projects ? service.projects.map(prepareProject) : [],
   text: service.text,
   html: markdown.render(service.text || ''),
 } : null);

@@ -9,6 +9,11 @@
         label="Заголовок"
         v-model="title"
       />
+      <v-select
+        label="Услуга"
+        v-model="serviceId"
+        :items="servicesData"
+      />
       <v-text-field
         label="Изображение"
         v-model="image"
@@ -50,6 +55,14 @@ export default {
   components: {
     MarkdownPreview: () => import('./MarkdownPreview.vue'),
   },
+  computed: {
+    servicesData() {
+      return this.services.map((service) => ({
+        value: service.id,
+        text: service.title,
+      }));
+    },
+  },
   data: () => ({
     id: null,
     slug: '',
@@ -89,6 +102,7 @@ export default {
   },
   props: [
     'formValues',
+    'services',
   ],
   watch: {
     formValues: 'load',
