@@ -1,13 +1,9 @@
 import api from './api';
 import pageApi from './page';
 import serviceApi from './service';
-import { prepareProject } from './project';
+import projectApi from './project';
+import socialApi from './social';
 
-const prepareSocial = (social) => (social ? {
-  id: social.id,
-  title: social.title,
-  href: social.href,
-} : null);
 const prepareBlog = (data) => {
   const {
     article,
@@ -60,20 +56,19 @@ export default {
   setService: serviceApi.setService,
   deleteService: serviceApi.deleteService,
 
-  getLatestProjects: () => api.get('/project/latest')
-    .then(({ data }) => {
-      const {
-        projects,
-      } = data;
-      return projects ? projects.map(prepareProject) : [];
-    }),
-  getSocials: () => api.get('/social')
-    .then(({ data }) => {
-      const {
-        socials,
-      } = data;
-      return socials ? socials.map(prepareSocial) : [];
-    }),
+  getProjects: projectApi.getProjects,
+  getLatestProjects: projectApi.getLatestProjects,
+  getProject: projectApi.getProject,
+  getProjectById: projectApi.getProjectById,
+  addProject: projectApi.addProject,
+  setProject: projectApi.setProject,
+  deleteProject: projectApi.deleteProject,
+
+  getSocials: socialApi.getSocials,
+  getSocial: socialApi.getSocial,
+  addSocial: socialApi.addSocial,
+  setSocial: socialApi.setSocial,
+  deleteSocial: socialApi.deleteSocial,
 
   getPages: pageApi.getPages,
   getPage: pageApi.getPage,

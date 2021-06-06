@@ -47,38 +47,40 @@ export default {
     MarkdownPreview: () => import('./MarkdownPreview.vue'),
   },
   data: () => ({
+    id: null,
     slug: '',
     title: '',
     image: '',
     text: '',
   }),
   methods: {
-    loadValues(values) {
-      if (!values) {
-        return;
-      }
-      this.slug = values.slug || '';
-      this.title = values.title || '';
-      this.image = values.image || '';
-      this.text = values.text || '';
+    load(values) {
+      this.id = (values && values.id) || null;
+      this.slug = (values && values.slug) || '';
+      this.title = (values && values.title) || '';
+      this.image = (values && values.image) || '';
+      this.text = (values && values.text) || '';
     },
     submit() {
       this.$emit('submit', {
-        slug: this.slug,
-        title: this.title,
-        image: this.image,
-        text: this.text,
+        id: this.id,
+        values: {
+          slug: this.slug,
+          title: this.title,
+          image: this.image,
+          text: this.text,
+        },
       });
     },
   },
   mounted() {
-    this.loadValues(this.formValues);
+    this.load(this.formValues);
   },
   props: [
     'formValues',
   ],
   watch: {
-    formValues: 'loadValues',
+    formValues: 'load',
   },
 };
 </script>

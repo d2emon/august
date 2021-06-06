@@ -13,10 +13,12 @@ export default new Vuex.Store({
 
     services: [],
     service: null,
-    latestProjects: [],
+    projects: [],
+    project: null,
     socials: [],
     pages: [],
     page: null,
+
     article: null,
     popularArticles: [],
     recentArticles: [],
@@ -25,7 +27,8 @@ export default new Vuex.Store({
   mutations: {
     setServices: (state, value) => Vue.set(state, 'services', value),
     setService: (state, value) => Vue.set(state, 'service', value),
-    setLatestProjects: (state, value) => Vue.set(state, 'latestProjects', value),
+    setProjects: (state, value) => Vue.set(state, 'projects', value),
+    setProject: (state, value) => Vue.set(state, 'project', value),
     setSocials: (state, value) => Vue.set(state, 'socials', value),
     setPages: (state, value) => Vue.set(state, 'pages', value),
     setPage: (state, value) => Vue.set(state, 'page', value),
@@ -40,17 +43,28 @@ export default new Vuex.Store({
     fetchService: ({ commit }, slug) => api.getService(slug)
       .then((service) => commit('setService', service)),
     fetchServiceById: ({ commit }, id) => api.getServiceById(id)
-      .then((page) => commit('setService', page)),
+      .then((service) => commit('setService', service)),
     addService: (context, values) => api.addService(values),
     updateService: (context, { id, values }) => api.setService(id, values),
     deleteService: (context, id) => api.deleteService(id),
 
-    fetchLatestProjects: ({ commit }) => api
-      .getLatestProjects()
-      .then((projects) => commit('setLatestProjects', projects)),
-    fetchSocials: ({ commit }) => api
-      .getSocials()
+    fetchProjects: ({ commit }) => api.getProjects()
+      .then((projects) => commit('setProjects', projects)),
+    fetchLatestProjects: ({ commit }) => api.getLatestProjects()
+      .then((projects) => commit('setProjects', projects)),
+    fetchProject: ({ commit }, slug) => api.getProject(slug)
+      .then((project) => commit('setProject', project)),
+    fetchProjectById: ({ commit }, id) => api.getProjectById(id)
+      .then((project) => commit('setProject', project)),
+    addProject: (context, values) => api.addProject(values),
+    updateProject: (context, { id, values }) => api.setProject(id, values),
+    deleteProject: (context, id) => api.deleteProject(id),
+
+    fetchSocials: ({ commit }) => api.getSocials()
       .then((socials) => commit('setSocials', socials)),
+    addSocial: (context, values) => api.addSocial(values),
+    updateSocial: (context, { id, values }) => api.setSocial(id, values),
+    deleteSocial: (context, id) => api.deleteSocial(id),
 
     fetchPages: ({ commit }) => api.getPages()
       .then((pages) => commit('setPages', pages)),

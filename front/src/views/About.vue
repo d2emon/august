@@ -38,14 +38,17 @@ export default {
       'fetchPages',
       'fetchPage',
     ]),
+    load(pageId) {
+      this.fetchPages();
+      this.fetchPage(pageId || config.defaultAboutPage);
+    },
   },
   mounted() {
-    this.fetchPages();
-    this.fetchPage(this.$route.params.id || config.defaultAboutPage);
+    this.load(this.$route.params.id);
   },
   watch: {
     $route(value) {
-      this.fetchPage(value.params.id || config.defaultAboutPage);
+      this.load(value.params.id);
     },
   },
 };

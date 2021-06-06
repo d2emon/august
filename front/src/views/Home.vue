@@ -11,7 +11,7 @@
     />
     <latest-projects
       title="Последние проекты"
-      :projects="latestProjects"
+      :projects="projects"
     />
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapState([
       'services',
-      'latestProjects',
+      'projects',
       'page',
     ]),
   },

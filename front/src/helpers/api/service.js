@@ -4,9 +4,10 @@ import { prepareProject } from './project';
 
 const prepareService = (service) => (service ? {
   id: service.id,
+  slug: service.slug,
   title: service.title,
-  to: `/services/${service.id}`,
-  toPortfolio: `/portfolio/service/${service.id}`,
+  to: `/services/${service.slug}`,
+  toPortfolio: `/portfolio/service/${service.slug}`,
   image: service.image,
   projects: service.projects ? service.projects.map(prepareProject) : [],
   text: service.text,

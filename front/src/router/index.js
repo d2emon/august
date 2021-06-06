@@ -18,58 +18,101 @@ const routes = [
         name: 'AdminHome',
         component: () => import('../admin/Home.vue'),
       },
+
       {
-        path: 'users',
-        name: 'AdminUsers',
-        component: () => import('../admin/Home.vue'),
+        path: 'article',
+        name: 'AdminArticle',
+        component: () => import('../admin/items/Articles.vue'),
       },
       {
-        path: 'contacts',
-        name: 'AdminContacts',
-        component: () => import('../admin/Home.vue'),
+        path: 'article/add',
+        name: 'AdminArticleAdd',
+        component: () => import('../admin/edit/EditArticle.vue'),
       },
       {
-        path: 'projects',
-        name: 'AdminProjects',
-        component: () => import('../admin/Home.vue'),
+        path: 'article/:id',
+        name: 'AdminArticleEdit',
+        component: () => import('../admin/edit/EditArticle.vue'),
       },
 
       {
-        path: 'services',
+        path: 'project',
+        name: 'AdminProjects',
+        component: () => import('../admin/items/Projects.vue'),
+      },
+      {
+        path: 'project/add',
+        name: 'AdminProjectAdd',
+        component: () => import('../admin/edit/EditProject.vue'),
+      },
+      {
+        path: 'project/:id',
+        name: 'AdminProjectEdit',
+        component: () => import('../admin/edit/EditProject.vue'),
+      },
+
+      {
+        path: 'service',
         name: 'AdminServices',
-        component: () => import('../admin/Services.vue'),
+        component: () => import('../admin/items/Services.vue'),
       },
       {
-        path: 'services/add',
+        path: 'service/add',
         name: 'AdminServiceAdd',
-        component: () => import('../admin/EditService.vue'),
+        component: () => import('../admin/edit/EditService.vue'),
       },
       {
-        path: 'services/:id',
+        path: 'service/:id',
         name: 'AdminServiceEdit',
-        component: () => import('../admin/EditService.vue'),
+        component: () => import('../admin/edit/EditService.vue'),
+      },
+
+      {
+        path: 'social',
+        name: 'AdminSocials',
+        component: () => import('../admin/items/Socials.vue'),
+      },
+      {
+        path: 'social/add',
+        name: 'AdminSocialAdd',
+        component: () => import('../admin/edit/EditSocial.vue'),
+      },
+      {
+        path: 'social/:id',
+        name: 'AdminSocialEdit',
+        component: () => import('../admin/edit/EditSocial.vue'),
+      },
+
+      {
+        path: 'user',
+        name: 'AdminUsers',
+        component: () => import('../admin/items/Users.vue'),
+      },
+      {
+        path: 'user/add',
+        name: 'AdminUserAdd',
+        component: () => import('../admin/edit/EditUser.vue'),
+      },
+      {
+        path: 'user/:id',
+        name: 'AdminUserEdit',
+        component: () => import('../admin/edit/EditUser.vue'),
       },
 
       {
         path: 'wiki',
         name: 'AdminWiki',
-        component: () => import('../admin/WikiPages.vue'),
+        component: () => import('../admin/items/WikiPages.vue'),
       },
       {
         path: 'wiki/add',
         name: 'AdminWikiAdd',
-        component: () => import('../admin/AddWikiPage.vue'),
+        component: () => import('../admin/edit/EditWikiPage.vue'),
       },
       {
         path: 'wiki/:id',
         name: 'AdminWikiEdit',
-        component: () => import('../admin/EditWikiPage.vue'),
-      },
-
-      {
-        path: 'blog',
-        name: 'AdminBlog',
-        component: () => import('../admin/Home.vue'),
+        component: () => import('../admin/edit/EditWikiPage.vue'),
       },
     ],
   },

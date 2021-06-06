@@ -9,6 +9,18 @@
         label="Заголовок"
         v-model="title"
       />
+      <v-text-field
+        label="Изображение"
+        v-model="image"
+      />
+      <v-img
+        v-if="image"
+        :src="image"
+      />
+      <v-date-picker
+        full-width
+        v-model="date"
+      />
       <markdown-preview
         label="Статья"
         v-model="text"
@@ -34,7 +46,7 @@
 
 <script>
 export default {
-  name: 'WikiForm',
+  name: 'ProjectForm',
   components: {
     MarkdownPreview: () => import('./MarkdownPreview.vue'),
   },
@@ -42,17 +54,21 @@ export default {
     id: null,
     slug: '',
     title: '',
+    date: new Date().toISOString().substr(0, 10),
+    serviceId: null,
+    image: '',
     text: '',
   }),
   methods: {
     load(values) {
-      if (!values) {
-        return;
-      }
-      this.id = values.id;
-      this.slug = values.slug || '';
-      this.title = values.title || '';
-      this.text = values.text || '';
+      this.id = (values && values.id) || null;
+      this.slug = (values && values.slug) || '';
+      this.title = (values && values.title) || '';
+      this.date = (values && values.date.substr(0, 10))
+        || new Date().toISOString().substr(0, 10);
+      this.serviceId = (values && values.serviceId) || null;
+      this.image = (values && values.image) || '';
+      this.text = (values && values.text) || '';
     },
     submit() {
       this.$emit('submit', {
@@ -60,6 +76,9 @@ export default {
         values: {
           slug: this.slug,
           title: this.title,
+          date: this.date,
+          serviceId: this.serviceId,
+          image: this.image,
           text: this.text,
         },
       });

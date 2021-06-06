@@ -27,22 +27,22 @@ export default {
       {
         id: 1,
         title: 'Пользователи',
-        to: '/admin/users',
+        to: '/admin/user',
       },
       {
         id: 2,
-        title: 'Контакты',
-        to: '/admin/contacts',
+        title: 'Соцсети',
+        to: '/admin/social',
       },
       {
         id: 3,
         title: 'Проекты',
-        to: '/admin/projects',
+        to: '/admin/project',
       },
       {
         id: 4,
         title: 'Услуги',
-        to: '/admin/services',
+        to: '/admin/service',
       },
       {
         id: 5,
@@ -52,7 +52,7 @@ export default {
       {
         id: 6,
         title: 'Блог',
-        to: '/admin/blog',
+        to: '/admin/article',
       },
     ],
   }),

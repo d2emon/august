@@ -55,14 +55,19 @@ export default {
       'fetchServices',
       'fetchService',
     ]),
+    load(serviceId) {
+      this.fetchServices();
+      if (serviceId) {
+        this.fetchService(serviceId);
+      }
+    },
   },
   mounted() {
-    this.fetchServices();
-    this.fetchService(this.$route.params.service);
+    this.load(this.$route.params.service);
   },
   watch: {
-    $route() {
-      this.fetchService(this.$route.params.service);
+    $route(value) {
+      this.fetchService(value.params.service);
     },
   },
 };

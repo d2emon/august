@@ -9,6 +9,14 @@
         label="Заголовок"
         v-model="title"
       />
+      <v-text-field
+        label="Изображение"
+        v-model="image"
+      />
+      <v-img
+        v-if="image"
+        :src="image"
+      />
       <markdown-preview
         label="Статья"
         v-model="text"
@@ -34,7 +42,7 @@
 
 <script>
 export default {
-  name: 'WikiForm',
+  name: 'ArticleForm',
   components: {
     MarkdownPreview: () => import('./MarkdownPreview.vue'),
   },
@@ -42,17 +50,16 @@ export default {
     id: null,
     slug: '',
     title: '',
+    image: '',
     text: '',
   }),
   methods: {
     load(values) {
-      if (!values) {
-        return;
-      }
-      this.id = values.id;
-      this.slug = values.slug || '';
-      this.title = values.title || '';
-      this.text = values.text || '';
+      this.id = (values && values.id) || null;
+      this.slug = (values && values.slug) || '';
+      this.title = (values && values.title) || '';
+      this.image = (values && values.image) || '';
+      this.text = (values && values.text) || '';
     },
     submit() {
       this.$emit('submit', {
@@ -60,6 +67,7 @@ export default {
         values: {
           slug: this.slug,
           title: this.title,
+          image: this.image,
           text: this.text,
         },
       });

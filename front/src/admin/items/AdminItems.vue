@@ -12,7 +12,7 @@
       >
         <v-btn
           text
-          to="/admin/wiki/add"
+          :to="`/admin/${slug}/add`"
         >
           Добавить
         </v-btn>
@@ -22,9 +22,9 @@
         dense
       >
         <v-list-item
-          v-for="item in pages"
+          v-for="item in items"
           :key="item.id"
-          :to="`/admin/wiki/${item.id}`"
+          :to="`/admin/${slug}/${item.id}`"
         >
           <v-list-item-content>
             <v-list-item-title>
@@ -38,40 +38,29 @@
 </template>
 
 <script>
-import {
-  mapActions,
-  mapState,
-} from 'vuex';
-
 export default {
-  name: 'WikiPages',
+  name: 'AdminItems',
   computed: {
-    ...mapState([
-      'pages',
-    ]),
+    breadcrumbs() {
+      return [
+        {
+          text: 'Администрирование',
+          to: '/admin',
+          exact: true,
+        },
+        {
+          text: this.title,
+          to: `/admin/${this.slug}`,
+          exact: true,
+        },
+      ];
+    },
   },
-  data: () => ({
-    breadcrumbs: [
-      {
-        text: 'Администрирование',
-        to: '/admin',
-        exact: true,
-      },
-      {
-        text: 'Страницы',
-        to: '/admin/wiki',
-        exact: true,
-      },
-    ],
-  }),
-  methods: {
-    ...mapActions([
-      'fetchPages',
-    ]),
-  },
-  mounted() {
-    this.fetchPages();
-  },
+  props: [
+    'items',
+    'title',
+    'slug',
+  ],
 };
 </script>
 
