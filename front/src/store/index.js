@@ -35,12 +35,16 @@ export default new Vuex.Store({
     setArticleCategories: (state, value) => Vue.set(state, 'articleCategories', value),
   },
   actions: {
-    fetchServices: ({ commit }) => api
-      .getServices()
+    fetchServices: ({ commit }) => api.getServices()
       .then((services) => commit('setServices', services)),
-    fetchService: ({ commit }, serviceId) => api
-      .getService(serviceId)
+    fetchService: ({ commit }, slug) => api.getService(slug)
       .then((service) => commit('setService', service)),
+    fetchServiceById: ({ commit }, id) => api.getServiceById(id)
+      .then((page) => commit('setService', page)),
+    addService: (context, values) => api.addService(values),
+    updateService: (context, { id, values }) => api.setService(id, values),
+    deleteService: (context, id) => api.deleteService(id),
+
     fetchLatestProjects: ({ commit }) => api
       .getLatestProjects()
       .then((projects) => commit('setLatestProjects', projects)),
@@ -50,7 +54,7 @@ export default new Vuex.Store({
 
     fetchPages: ({ commit }) => api.getPages()
       .then((pages) => commit('setPages', pages)),
-    fetchPage: ({ commit }, pageId) => api.getPage(pageId)
+    fetchPage: ({ commit }, slug) => api.getPage(slug)
       .then((page) => commit('setPage', page)),
     fetchPageById: ({ commit }, pageId) => api.getPageById(pageId)
       .then((page) => commit('setPage', page)),

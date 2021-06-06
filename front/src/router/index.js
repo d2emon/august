@@ -33,11 +33,23 @@ const routes = [
         name: 'AdminProjects',
         component: () => import('../admin/Home.vue'),
       },
+
       {
         path: 'services',
         name: 'AdminServices',
-        component: () => import('../admin/Home.vue'),
+        component: () => import('../admin/Services.vue'),
       },
+      {
+        path: 'services/add',
+        name: 'AdminServiceAdd',
+        component: () => import('../admin/EditService.vue'),
+      },
+      {
+        path: 'services/:id',
+        name: 'AdminServiceEdit',
+        component: () => import('../admin/EditService.vue'),
+      },
+
       {
         path: 'wiki',
         name: 'AdminWiki',
@@ -45,14 +57,15 @@ const routes = [
       },
       {
         path: 'wiki/add',
-        name: 'AdminWikiItem',
+        name: 'AdminWikiAdd',
         component: () => import('../admin/AddWikiPage.vue'),
       },
       {
         path: 'wiki/:id',
-        name: 'AdminWikiItem',
+        name: 'AdminWikiEdit',
         component: () => import('../admin/EditWikiPage.vue'),
       },
+
       {
         path: 'blog',
         name: 'AdminBlog',
@@ -81,12 +94,10 @@ const routes = [
           {
             path: '',
             name: 'PageList',
-            // component: () => import('../views/About.vue'),
           },
           {
             path: ':id',
             name: 'Page',
-            // component: () => import('../views/About.vue'),
           },
         ],
       },

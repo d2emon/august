@@ -1,17 +1,20 @@
 import mongoose, { Schema } from 'mongoose';
 
 const serviceSchema = new Schema({
+    slug: String,
     title: String,
-    short: String,
     image: String,
-    description: String,
+    // projects: Array,
+    text: String,
 });
 
-/*
-locationSchema.set('toJSON', {
-  virtuals: true,
-  versionKey: false,
-});
- */
+serviceSchema.options.toJSON = {
+    transform: function(doc, ret, options) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+        return ret;
+    }
+};
 
 export default mongoose.model('Service', serviceSchema);

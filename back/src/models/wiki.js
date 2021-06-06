@@ -15,11 +15,4 @@ wikiSchema.options.toJSON = {
     }
 };
 
-/*
-locationSchema.set('toJSON', {
-  virtuals: true,
-  versionKey: false,
-});
-*/
-
 export default mongoose.model('Wiki', wikiSchema);

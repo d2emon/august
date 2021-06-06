@@ -1,39 +1,12 @@
-import axios from 'axios';
-import config from './config';
-import markdown from './markdown';
+import api from './api';
+import pageApi from './page';
+import serviceApi from './service';
+import { prepareProject } from './project';
 
-const api = axios.create({
-  baseURL: config.apiUrl,
-});
-
-const prepareProject = (project) => (project ? {
-  id: project.id,
-  title: project.title,
-  client: project.client,
-  to: `/project/${project.id}`,
-  image: project.image,
-} : null);
-const prepareService = (service) => (service ? {
-  id: service.id,
-  title: service.title,
-  text: service.text,
-  to: `/services/${service.id}`,
-  toPortfolio: `/portfolio/service/${service.id}`,
-  image: service.image,
-  projects: service.projects ? service.projects.map(prepareProject) : [],
-} : null);
 const prepareSocial = (social) => (social ? {
   id: social.id,
   title: social.title,
   href: social.href,
-} : null);
-const preparePage = (page) => (page ? {
-  id: page.id,
-  slug: page.slug,
-  title: page.title,
-  to: `/about/${page.slug}`,
-  text: page.text,
-  html: markdown.render(page.text || ''),
 } : null);
 const prepareBlog = (data) => {
   const {
@@ -80,15 +53,13 @@ const prepareBlog = (data) => {
 };
 
 export default {
-  getServices: () => api.get('/service')
-    .then(({ data }) => {
-      const {
-        services,
-      } = data;
-      return services ? services.map(prepareService) : [];
-    }),
-  getService: (serviceId) => api.get(`/service/${serviceId}`)
-    .then(({ data }) => prepareService(data.service)),
+  getServices: serviceApi.getServices,
+  getService: serviceApi.getService,
+  getServiceById: serviceApi.getServiceById,
+  addService: serviceApi.addService,
+  setService: serviceApi.setService,
+  deleteService: serviceApi.deleteService,
+
   getLatestProjects: () => api.get('/project/latest')
     .then(({ data }) => {
       const {
@@ -104,23 +75,17 @@ export default {
       return socials ? socials.map(prepareSocial) : [];
     }),
 
-  getPages: () => api.get('/page')
-    .then(({ data }) => {
-      const {
-        pages,
-      } = data;
-      return pages ? pages.map(preparePage) : [];
-    }),
-  getPage: (pageId) => api.get(`/page/${pageId}`)
-    .then(({ data }) => preparePage(data.page)),
-  getPageById: (pageId) => api.get(`/page/id/${pageId}`)
-    .then(({ data }) => preparePage(data.page)),
-  addPage: (values) => api.post('/page', values),
-  setPage: (pageId, values) => api.put(`/page/${pageId}`, values),
-  deletePage: (pageId) => api.delete(`/page/${pageId}`),
+  getPages: pageApi.getPages,
+  getPage: pageApi.getPage,
+  getPageById: pageApi.getPageById,
+  addPage: pageApi.addPage,
+  setPage: pageApi.setPage,
+  deletePage: pageApi.deletePage,
 
+  /*
   getArticle: (articleId) => api.get(`/blog/${articleId}`)
     .then(({ data }) => preparePage(data.article)),
+  */
   getBlog: () => api.get('/blog')
     .then(({ data }) => prepareBlog(data)),
 };

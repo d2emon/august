@@ -1,3 +1,5 @@
+import Wiki from "../models/wiki";
+
 export default (itemsKey, itemKey, model, newModel) => ({
     getItems: async (req, res) => {
         try {
@@ -23,6 +25,15 @@ export default (itemsKey, itemKey, model, newModel) => ({
         try {
             const item = await model.findById(req.params.id);
             return res.json({ [itemKey]: item });
+        } catch (e) {
+            return res.status(500).json({ error: e.message });
+        }
+    },
+
+    getItemBySlug: async (req, res) => {
+        try {
+            const page = await model.findOne({ slug: req.params.slug });
+            return res.json({ page });
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }
