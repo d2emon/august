@@ -17,7 +17,7 @@
           v-for="project in projects"
           :key="project.id"
         >
-          <a :href="project.image"><img :src="project.image" alt=""></a>
+          <router-link :to="project.to"><img :src="project.image" alt=""></router-link>
           <span>Клиент: {{ project.client }}</span>
           <router-link :to="project.to">Подробнее</router-link>
         </li>

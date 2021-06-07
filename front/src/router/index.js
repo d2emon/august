@@ -152,12 +152,10 @@ const routes = [
           {
             path: '',
             name: 'ServicesList',
-            component: () => import('../views/Services.vue'),
           },
           {
             path: ':service',
             name: 'Service',
-            component: () => import('../views/Services.vue'),
           },
         ],
       },
@@ -171,6 +169,11 @@ const routes = [
             name: 'PortfolioItems',
           },
         ],
+      },
+      {
+        path: '/project/:id',
+        name: 'Project',
+        component: () => import('../views/Project.vue'),
       },
       {
         path: '/blog',

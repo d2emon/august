@@ -32,8 +32,8 @@ export default (itemsKey, itemKey, model, newModel) => ({
 
     getItemBySlug: async (req, res) => {
         try {
-            const page = await model.findOne({ slug: req.params.slug });
-            return res.json({ page });
+            const item = await model.findOne({ slug: req.params.slug });
+            return res.json({ [itemKey]: item });
         } catch (e) {
             return res.status(500).json({ error: e.message });
         }
