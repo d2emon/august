@@ -1,11 +1,12 @@
 <template>
-  <div class="about">
+  <div class="about main-page">
     <navigation-bar
       title="О нас"
       :links="links"
     />
 
     <div
+      class="main-page-content"
       v-if="page"
       v-html="page.html"
     />
@@ -55,6 +56,7 @@ export default {
 </script>
 
 <style>
+/*
 .body .about {
   padding:0 0 85px 0;
 }
@@ -82,4 +84,5 @@ export default {
   margin:25px 0 24px;
   font-size:13px;
 }
+*/
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="blog-categories">
+  <div class="blog-categories main-page">
     <div
       v-if="category"
-      class="content"
+      class="content main-page-content"
     >
       <h3><span>{{ category.title }}</span></h3>
       <ul

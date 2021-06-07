@@ -1,12 +1,12 @@
 <template>
-  <div class="blog">
+  <div class="blog main-page">
     <div
-      class="article"
+      class="article main-page-content"
       v-if="article"
     >
       <h2>{{ article.title }}</h2>
       <div
-        class="article-content"
+        class="article-content main-page-content"
         v-html="article.text"
       />
       <div class="share">
@@ -35,20 +35,8 @@
       </div>
     </div>
 
-    <div class="section">
-      <div>
-        <h3>Новые статьи</h3>
-        <ul v-if="recentArticles">
-          <li
-            v-for="a in recentArticles"
-            :key="a.id"
-          >
-            <router-link :to="a.to">{{ a.title }}</router-link><br />
-            <span>{{ a.published }}</span>
-          </li>
-        </ul>
-      </div>
-      <div>
+    <v-row class="section">
+      <v-col class="section-col">
         <h3>Популярные статьи</h3>
         <ul v-if="popularArticles">
           <li
@@ -56,11 +44,23 @@
             :key="a.id"
           >
             <router-link :to="a.to">{{ a.title }}</router-link><br />
-            <span>{{ a.published }}</span>
+            <span v-if="a.date">{{ dateFormatter(a.date) }}</span>
           </li>
         </ul>
-      </div>
-      <div class="categories">
+      </v-col>
+      <v-col class="section-col">
+        <h3>Новые статьи</h3>
+        <ul v-if="recentArticles">
+          <li
+            v-for="a in recentArticles"
+            :key="a.id"
+          >
+            <router-link :to="a.to">{{ a.title }}</router-link><br />
+            <span v-if="a.date">{{ dateFormatter(a.date) }}</span>
+          </li>
+        </ul>
+      </v-col>
+      <v-col class="section-col">
         <h3>Категории</h3>
         <ul v-if="articleCategories">
           <li
@@ -70,8 +70,8 @@
             <router-link :to="category.to">{{ category.title }}</router-link>
           </li>
         </ul>
-      </div>
-    </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
@@ -146,6 +146,8 @@ export default {
 .share {
   background:url(../assets/images/bg-share.jpg) repeat-x;
   height:42px;
+  width: 100%;
+  padding: 0 16px;
 }
 .share span:first-child {
   line-height: 43px;
@@ -176,6 +178,8 @@ export default {
 }
 .paging {
   overflow:hidden;
+  width: 100%;
+  padding: 0 16px;
 }
 .paging a.prev-post {
   float:left;
@@ -194,25 +198,12 @@ export default {
 .paging a:hover, .share span:first-child a:hover {
   text-decoration:underline;
 }
-.section {
-  margin: 0;
-  background-color:#f4f4f4;
-  -moz-box-shadow: 0 0 9px -1px #888888 inset;
-  -webkit-box-shadow: 0 0 9px -1px #888888 inset;
-  box-shadow: 0 0 9px -1px #888888 inset;
-}
-.section div:first-child {
-  background:none;
-}
-.section div {
-  width:195px;
-  background:url(../assets/images/bg-border.jpg) repeat-y left top;
-  float:left;
+.section-col {
   margin:0;
   text-align:left;
   padding:0 20px;
 }
-.section div h3 {
+.section-col h3 {
   font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   font-size:16px;
   color:#7d7d7d;
@@ -220,13 +211,14 @@ export default {
   background:none;
   margin:30px 0 15px;
 }
-.section div ul li {
+.section-col ul li {
   text-align:left;
   height:auto;
   background:none;
   margin:0 0 15px!important;
+  list-style: none;
 }
-.section div ul li a {
+.section-col ul li a {
   font-family:"Myriad Pro", sans-serif;
   text-decoration:none;
   font-size:13px;
@@ -234,11 +226,13 @@ export default {
   color:#414141;
   margin:0 0 3px!important;
 }
-.section div ul li a:hover {
+.section-col ul li a:hover {
   text-decoration:underline;
   color:#414141;
 }
+/*
 .section .categories ul li {
   width:95px;
 }
+*/
 </style>

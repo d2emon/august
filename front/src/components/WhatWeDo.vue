@@ -9,9 +9,21 @@
         v-for="link in links"
         :key="link.id"
         :id="link.id"
-        :style="link.image && `background: url(${link.image}) no-repeat`"
       >
-        <router-link :to="link.to"><span>{{link.title}}</span></router-link>
+        <v-card
+          :to="link.to"
+          height="257px"
+          width="215px"
+        >
+          <v-img
+            v-if="link.image"
+            :src="link.image"
+            height="257px"
+            width="215px"
+          >
+            <div class="service-name">{{link.title}}</div>
+          </v-img>
+        </v-card>
       </li>
     </ul>
   </div>
@@ -46,6 +58,9 @@ h3 span {
   background-color:#fff;
   width: 140px;
 }
+div {
+  margin:0;
+}
 p {
   padding:0;
 }
@@ -70,23 +85,16 @@ ul.service-links li:hover {
   opacity:0.9;
 }
 ul.service-links li a {
-  height: 257px;
-  width: 215px;
-  display:inline-block;
-  text-decoration:none;
+  text-decoration: none;
 }
-ul.service-links li a span:hover {
-  color: #919191;
-}
-ul.service-links li a span {
+.service-name {
   color:#7c7c7c;
   font-size:24px;
   text-transform:uppercase;
   font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   text-decoration:none;
-  position:relative;
-  float:right;
-  top: 210px;
-  right:16px;
+}
+.service-name:hover {
+  color: #919191;
 }
 </style>

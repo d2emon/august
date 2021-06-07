@@ -6,15 +6,21 @@
         v-for="(project, projectId) in projects"
         :key="projectId"
       >
-        <router-link :to="project.to">
-          <img
+        <v-card
+          :to="project.to"
+          width="200px"
+        >
+          <v-img
+            v-if="project.image"
             :src="project.image"
-            :alt="project.title"
+            width="200px"
+            height="100px"
           />
-        </router-link>
-        <span>Project: {{ project.title }}</span>
-        <span>Client: {{ project.client }}</span>
-        <router-link :to="project.to">Подробнее</router-link>
+          <v-card-text>
+            <h5>{{ project.title }}</h5>
+            <h6>Заказчик: {{ project.client }}</h6>
+          </v-card-text>
+        </v-card>
       </li>
     </ul>
   </div>
@@ -54,14 +60,14 @@ export default {
   padding:4px 0 33px;
   list-style:none;
   overflow:hidden;
-  height:200px;
+  /* height:200px; */
 }
 .latest-projects ul li:first-child {
   margin:0;
 }
 .latest-projects ul li {
   float:left;
-  height: 257px;
+  height: 200px;
   width:200px;
   position:relative;
   margin: 0 0 0 32px;

@@ -9,14 +9,21 @@
         label="Заголовок"
         v-model="title"
       />
-      <v-text-field
-        label="Изображение"
-        v-model="image"
-      />
-      <v-img
-        v-if="image"
-        :src="image"
-      />
+      <v-row>
+        <v-col>
+          <v-text-field
+            label="Изображение"
+            v-model="image"
+          />
+        </v-col>
+        <v-col>
+          <v-img
+            v-if="image"
+            :src="image"
+            width="100%"
+          />
+        </v-col>
+      </v-row>
       <markdown-preview
         label="Статья"
         v-model="text"

@@ -1,6 +1,7 @@
 <template>
-  <div class="home">
+  <div class="home main-page">
     <div
+      class="main-page-content"
       v-if="page"
       v-html="page.html"
     />

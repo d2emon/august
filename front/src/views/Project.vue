@@ -1,7 +1,7 @@
 <template>
-  <div class="projects">
+  <div class="projects main-page">
     <div
-      class="project"
+      class="project main-page-content"
       v-if="project"
     >
       <h3><span>{{ project.title }}</span></h3>
@@ -11,7 +11,7 @@
           :alt="project.title"
           :title="project.title"
         />
-        <h4>Клиент: {{ project.client }}</h4>
+        <h4>Заказчик: {{ project.client }}</h4>
         <h5>{{ dateFormatter(project.date) }}</h5>
       </div>
       <div

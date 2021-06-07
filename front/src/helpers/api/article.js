@@ -11,8 +11,8 @@ export const prepareArticle = (article) => (article ? {
   html: markdown.render(article.text || ''),
   viewed: article.viewed,
   categories: article.categories,
-  prevPost: article.prevPost,
-  nextPost: article.nextPost,
+  prevPost: article.prevPost ? `/blog/articles/${article.prevPost}` : null,
+  nextPost: article.nextPost ? `/blog/articles/${article.nextPost}` : null,
 } : null);
 
 export default {

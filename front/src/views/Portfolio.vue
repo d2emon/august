@@ -1,5 +1,5 @@
 <template>
-  <div class="portfolio">
+  <div class="portfolio main-page">
     <navigation-bar
       title="Портфолио"
       :links="links"
@@ -7,7 +7,7 @@
 
     <div
       v-if="service"
-      class="content"
+      class="content main-page-content"
     >
       <h3><span>{{ service.title }}</span></h3>
       <ul
@@ -17,9 +17,21 @@
           v-for="project in projects"
           :key="project.id"
         >
-          <router-link :to="project.to"><img :src="project.image" alt=""></router-link>
-          <span>Клиент: {{ project.client }}</span>
-          <router-link :to="project.to">Подробнее</router-link>
+          <v-card
+            :to="project.to"
+            width="200px"
+          >
+            <v-img
+              v-if="project.image"
+              :src="project.image"
+              width="200px"
+              height="100px"
+            />
+            <v-card-text>
+              <h5>{{ project.title }}</h5>
+              <h6>Заказчик: {{ project.client }}</h6>
+            </v-card-text>
+          </v-card>
         </li>
       </ul>
     </div>
@@ -113,6 +125,7 @@ export default {
 }
 .content ul li {
   height: 280px;
+  list-style: none;
 }
 .portfolio ul {
   overflow:hidden;

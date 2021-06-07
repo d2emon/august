@@ -18,14 +18,21 @@
         label="Клиент"
         v-model="client"
       />
-      <v-text-field
-        label="Изображение"
-        v-model="image"
-      />
-      <v-img
-        v-if="image"
-        :src="image"
-      />
+      <v-row>
+        <v-col>
+          <v-text-field
+            label="Изображение"
+            v-model="image"
+          />
+        </v-col>
+        <v-col>
+          <v-img
+            v-if="image"
+            :src="image"
+            width="100%"
+          />
+        </v-col>
+      </v-row>
       <v-date-picker
         full-width
         v-model="date"

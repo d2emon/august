@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="navigation-bar">
     <h2 v-if="title">{{ title }}</h2>
     <ul
       v-if="links"
@@ -26,6 +26,10 @@ export default {
 </script>
 
 <style scoped>
+.navigation-bar {
+  height: 72px;
+}
+
 h2 {
   float: left;
 }

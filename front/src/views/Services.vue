@@ -1,12 +1,12 @@
 <template>
-  <div class="services">
+  <div class="services main-page">
     <navigation-bar
       title="Наши услуги"
       :links="links"
     />
 
     <div
-      class="service"
+      class="service main-page-content"
       v-if="service"
     >
       <h3><span>{{ service.title }}</span></h3>
