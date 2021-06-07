@@ -1,4 +1,4 @@
-import Social from '../models/dummies/social';
+import Social from '../models/social';
 import modelHandler from '../helpers/modelHandler';
 
 export default modelHandler(

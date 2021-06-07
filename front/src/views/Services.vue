@@ -18,7 +18,7 @@
         />
       </div>
       <div
-        v-html="service.text"
+        v-html="service.html"
       />
     </div>
   </div>

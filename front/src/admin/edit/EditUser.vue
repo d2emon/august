@@ -6,7 +6,7 @@
       :item="item"
       @load="load"
     >
-      <service-form
+      <user-form
         :form-values="item"
         @submit="submit"
       />
@@ -24,7 +24,7 @@ export default {
   name: 'EditUser',
   components: {
     EditItem: () => import('./EditItem.vue'),
-    ServiceForm: () => import('../forms/ServiceForm.vue'),
+    UserForm: () => import('../forms/UserForm.vue'),
   },
   computed: {
     ...mapState([

@@ -30,6 +30,11 @@ export default {
   mounted() {
     this.fetchServices();
   },
+  watch: {
+    $route() {
+      this.fetchServices();
+    },
+  },
 };
 </script>
 

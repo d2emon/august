@@ -34,12 +34,13 @@ export default {
       return this.$route.params.id;
     },
     item() {
-      return this.$route.params.id ? this.service : null;
+      return this.$route.params.id ? this.page : null;
     },
   },
   methods: {
     ...mapActions([
       'fetchPageById',
+      'addPage',
       'updatePage',
     ]),
     load(itemId) {

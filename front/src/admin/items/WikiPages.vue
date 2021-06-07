@@ -30,6 +30,11 @@ export default {
   mounted() {
     this.fetchPages();
   },
+  watch: {
+    $route() {
+      this.fetchPages();
+    },
+  },
 };
 </script>
 

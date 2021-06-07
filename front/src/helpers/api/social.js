@@ -4,6 +4,7 @@ const prepareSocial = (social) => (social ? {
   id: social.id,
   title: social.title,
   href: social.href,
+  social: social.social,
 } : null);
 
 export default {

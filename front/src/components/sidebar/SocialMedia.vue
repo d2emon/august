@@ -1,15 +1,21 @@
 <template>
   <div class="connect">
-    <a
+    <v-btn
       v-for="social in socials"
       :key="social.id"
-      :id="social.id"
       :href="social.href"
       :title="social.title"
-      class="social-link"
+      class="mx-1"
+      fab
+      dark
+      small
     >
-      {{ social.title }}
-    </a>
+      <v-icon
+        dark
+      >
+        {{ linkMap[social.social] }}
+      </v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -19,45 +25,20 @@ export default {
   props: [
     'socials',
   ],
+  data: () => ({
+    linkMap: {
+      fb: 'mdi-facebook',
+      twitter: 'mdi-twitter',
+      vk: 'mdi-vk',
+    },
+  }),
 };
 </script>
 
 <style scoped>
 .connect {
   overflow: hidden;
-  padding: 32px 48px 18px;
-}
-
-.social-link {
-  width:37px;
-  height:37px;
-  display:inline-block;
-  float:left;
-  text-indent:-99999px;
-  margin:0 2px;
-}
-
-.connect a#facebook {
-  background:url(../../assets/images/icons.png) no-repeat 0 -83px;
-}
-
-.connect a#facebook:hover {
-  background:url(../../assets/images/icons.png) no-repeat 0 -121px;
-}
-
-.connect a#twitter {
-  background:url(../../assets/images/icons.png) no-repeat 0 -41px;
-}
-
-.connect a#twitter:hover {
-  background:url(../../assets/images/icons.png) no-repeat 0 -197px;
-}
-
-.connect a#googleplus {
-  background:url(../../assets/images/icons.png) no-repeat 0 0;
-}
-
-.connect a#googleplus:hover {
-  background:url(../../assets/images/icons.png) no-repeat 0 -159px;
+  padding: 32px 0 18px;
+  text-align: center;
 }
 </style>

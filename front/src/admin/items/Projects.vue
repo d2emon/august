@@ -30,6 +30,11 @@ export default {
   mounted() {
     this.fetchProjects();
   },
+  watch: {
+    $route() {
+      this.fetchProjects();
+    },
+  },
 };
 </script>
 

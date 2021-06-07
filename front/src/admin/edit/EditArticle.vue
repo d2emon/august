@@ -6,7 +6,7 @@
       :item="item"
       @load="load"
     >
-      <service-form
+      <article-form
         :form-values="item"
         @submit="submit"
       />
@@ -24,7 +24,7 @@ export default {
   name: 'EditArticle',
   components: {
     EditItem: () => import('./EditItem.vue'),
-    ServiceForm: () => import('../forms/ServiceForm.vue'),
+    ArticleForm: () => import('../forms/ArticleForm.vue'),
   },
   computed: {
     ...mapState([

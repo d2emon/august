@@ -6,7 +6,7 @@
       :item="item"
       @load="load"
     >
-      <service-form
+      <social-form
         :form-values="item"
         @submit="submit"
       />
@@ -24,7 +24,7 @@ export default {
   name: 'EditSocial',
   components: {
     EditItem: () => import('./EditItem.vue'),
-    ServiceForm: () => import('../forms/ServiceForm.vue'),
+    SocialForm: () => import('../forms/SocialForm.vue'),
   },
   computed: {
     ...mapState([
