@@ -11,8 +11,9 @@
       />
       <div class="share">
         <span>
-          Опубликовано {{ article.published }} в
-          <template v-for="(category, categoryId) in article.categories">
+          Опубликовано {{ dateFormatter(article.date) }}
+          <template v-if="categories"> в </template>
+          <template v-for="(category, categoryId) in categories">
             <router-link
               :key="category.id"
               :to="category.to"
@@ -22,13 +23,13 @@
             <template v-if="categoryId < article.categories.length - 1">, </template>
           </template>
         </span>
-        <span><a :href="article.toComments">Комментарии {{ article.comments }}</a></span>
+        <span>Просмотров {{ article.viewed }}</span>
       </div>
       <div class="paging">
-        <router-link :to="article.prevPost" class="prev-post">
+        <router-link v-if="article.prevPost" :to="article.prevPost" class="prev-post">
           &#60;&#60; Предыдущая Запись
         </router-link>
-        <router-link :to="article.nextPost" class="next-post">
+        <router-link v-if="article.nextPost" :to="article.nextPost" class="next-post">
           Следующая Запись &#62;&#62;
         </router-link>
       </div>
@@ -79,6 +80,7 @@ import {
   mapActions,
   mapState,
 } from 'vuex';
+import dateFormatter from '@/helpers/dateFormatter';
 
 export default {
   name: 'Blog',
@@ -89,12 +91,43 @@ export default {
       'popularArticles',
       'articleCategories',
     ]),
+    categories() {
+      if (!this.articleCategories) {
+        return [];
+      }
+      if (!this.article) {
+        return [];
+      }
+      if (!this.article.categories) {
+        return [];
+      }
+      return this.article.categories
+        .map((id) => this.articleCategories.find((item) => (item.id === id)));
+    },
   },
   methods: {
-    ...mapActions(['fetchBlog']),
+    ...mapActions([
+      'fetchBlog',
+      'fetchArticle',
+      'fetchLatestArticle',
+    ]),
+    load(articleId) {
+      this.fetchBlog();
+      if (articleId) {
+        this.fetchArticle(articleId);
+      } else {
+        this.fetchLatestArticle();
+      }
+    },
+    dateFormatter,
   },
   mounted() {
-    this.fetchBlog();
+    this.load(this.$route.params.id);
+  },
+  watch: {
+    $route(value) {
+      this.load(value.params.id);
+    },
   },
 };
 </script>

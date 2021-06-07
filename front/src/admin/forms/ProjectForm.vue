@@ -83,7 +83,7 @@ export default {
       this.slug = (values && values.slug) || '';
       this.title = (values && values.title) || '';
       this.client = (values && values.client) || '';
-      this.date = (values && values.date.substr(0, 10))
+      this.date = (values && values.date && values.date.substr(0, 10))
         || new Date().toISOString().substr(0, 10);
       this.serviceId = (values && values.serviceId) || null;
       this.image = (values && values.image) || '';

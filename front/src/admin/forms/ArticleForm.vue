@@ -9,13 +9,22 @@
         label="Заголовок"
         v-model="title"
       />
-      <v-text-field
-        label="Изображение"
-        v-model="image"
+      <v-select
+        label="Категории"
+        v-model="categories"
+        :items="categoriesData"
+        attach
+        chips
+        multiple
       />
-      <v-img
-        v-if="image"
-        :src="image"
+      <v-text-field
+        label="Просмотров"
+        readonly
+        v-model="viewed"
+      />
+      <v-date-picker
+        full-width
+        v-model="date"
       />
       <markdown-preview
         label="Статья"
@@ -46,11 +55,21 @@ export default {
   components: {
     MarkdownPreview: () => import('./MarkdownPreview.vue'),
   },
+  computed: {
+    categoriesData() {
+      return this.categoriesLookup.map((category) => ({
+        value: category.id,
+        text: category.title,
+      }));
+    },
+  },
   data: () => ({
     id: null,
     slug: '',
     title: '',
-    image: '',
+    viewed: 0,
+    date: new Date().toISOString().substr(0, 10),
+    categories: null,
     text: '',
   }),
   methods: {
@@ -58,6 +77,10 @@ export default {
       this.id = (values && values.id) || null;
       this.slug = (values && values.slug) || '';
       this.title = (values && values.title) || '';
+      this.viewed = (values && values.viewed) || 0;
+      this.date = (values && values.date && values.date.substr(0, 10))
+        || new Date().toISOString().substr(0, 10);
+      this.categories = (values && values.categories) || [];
       this.image = (values && values.image) || '';
       this.text = (values && values.text) || '';
     },
@@ -67,7 +90,8 @@ export default {
         values: {
           slug: this.slug,
           title: this.title,
-          image: this.image,
+          date: this.date,
+          categories: this.categories,
           text: this.text,
         },
       });
@@ -78,6 +102,7 @@ export default {
   },
   props: [
     'formValues',
+    'categoriesLookup',
   ],
   watch: {
     formValues: 'load',

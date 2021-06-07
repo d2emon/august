@@ -12,6 +12,7 @@
           :title="project.title"
         />
         <h4>Клиент: {{ project.client }}</h4>
+        <h5>{{ dateFormatter(project.date) }}</h5>
       </div>
       <div
         v-html="project.html"
@@ -25,6 +26,7 @@ import {
   mapActions,
   mapState,
 } from 'vuex';
+import dateFormatter from '@/helpers/dateFormatter';
 
 export default {
   name: 'Project',
@@ -40,6 +42,7 @@ export default {
     load(projectId) {
       this.fetchProject(projectId);
     },
+    dateFormatter,
   },
   mounted() {
     this.load(this.$route.params.id);

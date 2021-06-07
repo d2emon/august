@@ -19,9 +19,10 @@ export default new Vuex.Store({
     pages: [],
     page: null,
 
-    article: null,
+    articles: [],
     popularArticles: [],
     recentArticles: [],
+    article: null,
     articleCategories: [],
   },
   mutations: {
@@ -32,6 +33,7 @@ export default new Vuex.Store({
     setSocials: (state, value) => Vue.set(state, 'socials', value),
     setPages: (state, value) => Vue.set(state, 'pages', value),
     setPage: (state, value) => Vue.set(state, 'page', value),
+    setArticles: (state, value) => Vue.set(state, 'articles', value),
     setArticle: (state, value) => Vue.set(state, 'article', value),
     setPopularArticles: (state, value) => Vue.set(state, 'popularArticles', value),
     setRecentArticles: (state, value) => Vue.set(state, 'recentArticles', value),
@@ -78,10 +80,29 @@ export default new Vuex.Store({
     updatePage: (context, { id, values }) => api.setPage(id, values),
     deletePage: (context, id) => api.deletePage(id),
 
+    fetchCategories: ({ commit }) => api.getCategories()
+      .then((categories) => commit('setArticleCategories', categories)),
+    addCategory: (context, values) => api.addCategory(values),
+    updateCategory: (context, { id, values }) => api.setCategory(id, values),
+    deleteCategory: (context, id) => api.deleteCategory(id),
+
+    fetchArticles: ({ commit }) => api.getArticles()
+      .then((articles) => commit('setArticles', articles)),
+    fetchCategoryArticles: ({ commit }, id) => api.getCategoryArticles(id)
+      .then((articles) => commit('setArticles', articles)),
+    fetchArticle: ({ commit }, slug) => api.getArticle(slug)
+      .then((article) => commit('setArticle', article)),
+    fetchArticleById: ({ commit }, pageId) => api.getArticleById(pageId)
+      .then((article) => commit('setArticle', article)),
+    fetchLatestArticle: ({ commit }) => api.getLatestArticle()
+      .then((article) => commit('setArticle', article)),
+    addArticle: (context, values) => api.addArticle(values),
+    updateArticle: (context, { id, values }) => api.setArticle(id, values),
+    deleteArticle: (context, id) => api.deleteArticle(id),
+
     fetchBlog: ({ commit }) => api
       .getBlog()
       .then((blog) => {
-        commit('setArticle', blog.article);
         commit('setPopularArticles', blog.popular);
         commit('setRecentArticles', blog.recent);
         commit('setArticleCategories', blog.categories);

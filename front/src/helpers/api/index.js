@@ -3,48 +3,19 @@ import pageApi from './page';
 import serviceApi from './service';
 import projectApi from './project';
 import socialApi from './social';
+import categoryApi, { prepareCategory } from './category';
+import articleApi, { prepareArticle } from './article';
 
 const prepareBlog = (data) => {
   const {
-    article,
     popular,
     recent,
     categories,
   } = data;
   return {
-    article: article ? {
-      id: article.id,
-      title: article.title,
-      published: article.published,
-      categories: article.categories.map((category) => ({
-        id: category.id,
-        title: category.title,
-        to: `/blog/category/${category.id}`,
-      })),
-      to: `/blog/article/${article.id}`,
-      toComments: `/blog/article/${article.id}/comments`,
-      prevPost: article.prevPost,
-      nextPost: article.nextPost,
-      text: article.text,
-      comments: article.comments,
-    } : null,
-    popular: popular ? popular.map((a) => ({
-      id: a.id,
-      title: a.title,
-      published: a.published,
-      to: `/blog/article/${a.id}`,
-    })) : [],
-    recent: recent ? recent.map((a) => ({
-      id: a.id,
-      title: a.title,
-      published: a.published,
-      to: `/blog/article/${a.id}`,
-    })) : [],
-    categories: categories ? categories.map((category) => ({
-      id: category.id,
-      title: category.title,
-      to: `/blog/category/${category.id}`,
-    })) : [],
+    popular: popular ? popular.map(prepareArticle) : [],
+    recent: recent ? recent.map(prepareArticle) : [],
+    categories: categories ? categories.map(prepareCategory) : [],
   };
 };
 
@@ -78,10 +49,21 @@ export default {
   setPage: pageApi.setPage,
   deletePage: pageApi.deletePage,
 
-  /*
-  getArticle: (articleId) => api.get(`/blog/${articleId}`)
-    .then(({ data }) => preparePage(data.article)),
-  */
+  getCategories: categoryApi.getCategories,
+  getCategory: categoryApi.getCategory,
+  addCategory: categoryApi.addCategory,
+  setCategory: categoryApi.setCategory,
+  deleteCategory: categoryApi.deleteCategory,
+
+  getArticles: articleApi.getArticles,
+  getCategoryArticles: articleApi.getCategoryArticles,
+  getArticle: articleApi.getArticle,
+  getArticleById: articleApi.getArticleById,
+  getLatestArticle: articleApi.getLatestArticle,
+  addArticle: articleApi.addArticle,
+  setArticle: articleApi.setArticle,
+  deleteArticle: articleApi.deleteArticle,
+
   getBlog: () => api.get('/blog')
     .then(({ data }) => prepareBlog(data)),
 };

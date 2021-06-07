@@ -51,6 +51,11 @@ export default {
       },
       {
         id: 6,
+        title: 'Категории',
+        to: '/admin/category',
+      },
+      {
+        id: 7,
         title: 'Блог',
         to: '/admin/article',
       },

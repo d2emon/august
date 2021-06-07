@@ -1,14 +1,13 @@
 <template>
   <v-container>
     <edit-item
-      title="Статьи"
-      slug="article"
+      title="Категории статей"
+      slug="category"
       :item="item"
       @load="load"
     >
-      <article-form
+      <category-form
         :form-values="item"
-        :categoriesLookup="articleCategories"
         @submit="submit"
       />
     </edit-item>
@@ -22,44 +21,43 @@ import {
 } from 'vuex';
 
 export default {
-  name: 'EditArticle',
+  name: 'EditCategory',
   components: {
     EditItem: () => import('./EditItem.vue'),
-    ArticleForm: () => import('../forms/ArticleForm.vue'),
+    CategoryForm: () => import('../forms/CategoryForm.vue'),
   },
   computed: {
     ...mapState([
-      'article',
       'articleCategories',
     ]),
     itemId() {
       return this.$route.params.id;
     },
     item() {
-      return this.$route.params.id ? this.article : null;
+      return this.$route.params.id
+        ? this.articleCategories.find((item) => (item.id === this.$route.params.id))
+        : null;
     },
   },
   methods: {
     ...mapActions([
       'fetchCategories',
-      'fetchArticleById',
-      'addArticle',
-      'updateArticle',
+      'addCategory',
+      'updateCategory',
     ]),
-    load(itemId) {
+    load() {
       this.fetchCategories();
-      this.fetchArticleById(itemId);
     },
     submit({ id, values }) {
       if (id) {
-        this.updateArticle({
+        this.updateCategory({
           id,
           values,
         });
       } else {
-        this.addArticle(values);
+        this.addCategory(values);
       }
-      this.$router.push('/admin/article');
+      this.$router.push('/admin/category');
     },
   },
 };

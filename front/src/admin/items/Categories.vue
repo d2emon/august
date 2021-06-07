@@ -1,8 +1,8 @@
 <template>
   <admin-items
-    :items="articles"
-    title="Статьи"
-    slug="article"
+    :items="articleCategories"
+    title="Категории статей"
+    slug="category"
   />
 </template>
 
@@ -13,26 +13,26 @@ import {
 } from 'vuex';
 
 export default {
-  name: 'Articles',
+  name: 'Categories',
   components: {
     AdminItems: () => import('./AdminItems.vue'),
   },
   computed: {
     ...mapState([
-      'articles',
+      'articleCategories',
     ]),
   },
   methods: {
     ...mapActions([
-      'fetchArticles',
+      'fetchCategories',
     ]),
   },
   mounted() {
-    this.fetchArticles();
+    this.fetchCategories();
   },
   watch: {
     $route() {
-      this.fetchArticles();
+      this.fetchCategories();
     },
   },
 };

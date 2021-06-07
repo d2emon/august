@@ -6,7 +6,6 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/admin',
-    name: 'Admin',
     component: () => import('../admin/AdminContainer.vue'),
     children: [
       {
@@ -33,6 +32,22 @@ const routes = [
         path: 'article/:id',
         name: 'AdminArticleEdit',
         component: () => import('../admin/edit/EditArticle.vue'),
+      },
+
+      {
+        path: 'category',
+        name: 'AdminCategory',
+        component: () => import('../admin/items/Categories.vue'),
+      },
+      {
+        path: 'category/add',
+        name: 'AdminCategoryAdd',
+        component: () => import('../admin/edit/EditCategory.vue'),
+      },
+      {
+        path: 'category/:id',
+        name: 'AdminCategoryEdit',
+        component: () => import('../admin/edit/EditCategory.vue'),
       },
 
       {
@@ -131,7 +146,6 @@ const routes = [
       },
       {
         path: '/about',
-        name: 'About',
         component: () => import('../views/About.vue'),
         children: [
           {
@@ -146,7 +160,6 @@ const routes = [
       },
       {
         path: '/services',
-        name: 'Services',
         component: () => import('../views/Services.vue'),
         children: [
           {
@@ -177,8 +190,22 @@ const routes = [
       },
       {
         path: '/blog',
-        name: 'Blog',
         component: () => import('../views/Blog.vue'),
+        children: [
+          {
+            path: '',
+            name: 'LatestArticle',
+          },
+          {
+            path: 'articles/:id',
+            name: 'Article',
+          },
+        ],
+      },
+      {
+        path: '/blog/categories/:id',
+        name: 'BlogCategories',
+        component: () => import('../views/BlogCategories.vue'),
       },
     ],
   },
