@@ -15,6 +15,10 @@
         :items="servicesData"
       />
       <v-text-field
+        label="Клиент"
+        v-model="client"
+      />
+      <v-text-field
         label="Изображение"
         v-model="image"
       />
@@ -67,6 +71,7 @@ export default {
     id: null,
     slug: '',
     title: '',
+    client: '',
     date: new Date().toISOString().substr(0, 10),
     serviceId: null,
     image: '',
@@ -77,6 +82,7 @@ export default {
       this.id = (values && values.id) || null;
       this.slug = (values && values.slug) || '';
       this.title = (values && values.title) || '';
+      this.client = (values && values.client) || '';
       this.date = (values && values.date.substr(0, 10))
         || new Date().toISOString().substr(0, 10);
       this.serviceId = (values && values.serviceId) || null;
@@ -89,6 +95,7 @@ export default {
         values: {
           slug: this.slug,
           title: this.title,
+          client: this.client,
           date: this.date,
           serviceId: this.serviceId,
           image: this.image,
