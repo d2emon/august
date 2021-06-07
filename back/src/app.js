@@ -12,6 +12,7 @@ import {error404, errorHandler,} from './handlers/error';
 import db, {connect} from './helpers/mongo';
 import debug from './helpers/debug';
 
+import authRoutes from './routes/auth';
 import blogRoutes from './routes/blog';
 import pageRoutes from './routes/pages';
 import projectRoutes from './routes/projects';
@@ -34,6 +35,7 @@ app.set('dbConnection', connect(process.env.MONGO_URI))
 mongoose.connection.on('error', error => debug('db')(error || ''));
 mongoose.connection.once('open', () => debug('db')('MongoDB connected'));
 
+app.use('/api/v1.0/auth', authRoutes);
 app.use('/api/v1.0/blog', blogRoutes);
 app.use('/api/v1.0/page', pageRoutes);
 app.use('/api/v1.0/project', projectRoutes);

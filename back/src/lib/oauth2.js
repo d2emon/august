@@ -1,14 +1,17 @@
-/*
 import oauth2orize from 'oauth2orize';
 import passport from 'passport';
+/*
 import randomString from '../oauth/helpers/randomString';
 import UserModel from '../oauth/models/user';
 import AccessTokenModel from '../oauth/models/access_token';
 import RefreshTokenModel from '../oauth/models/refresh_token';
+ */
 
-// create OAuth 2.0 server
+// Создаем сервер OAuth 2.0
+
 export const authServer = oauth2orize.createServer();
 
+/*
 const updateTokens = async (userId, clientId) => {
     await Promise.all([
         RefreshTokenModel.remove({ userId, clientId }),
@@ -40,7 +43,9 @@ const updateTokens = async (userId, clientId) => {
         options: {'expires_in': process.env.TOKEN_LIFETIME},
     };
 };
+*/
 
+/*
 // Exchange username & password for access token.
 authServer.exchange(oauth2orize.exchange.password(async (client, username, password, scope, done) => {
     try {
@@ -68,7 +73,9 @@ authServer.exchange(oauth2orize.exchange.password(async (client, username, passw
         return done(e);
     }
 }));
+*/
 
+/*
 // Exchange refreshToken for access token.
 authServer.exchange(oauth2orize.exchange.refreshToken(async (client, refreshToken, scope, done) => {
     try {
@@ -93,18 +100,22 @@ authServer.exchange(oauth2orize.exchange.refreshToken(async (client, refreshToke
         return done(e);
     }
 }));
+*/
 
-// token endpoint
+// Получение токена
 export const getToken = passport.authenticate(
     ['basic', 'oauth2-client-password'],
     { session: false },
 );
 
+/*
 export const authUser = passport.authenticate(
     'bearer',
     { session: false },
 );
+*/
 
+/*
 export const authLogin = passport.authenticate(
     'oauth2-client-password',
     { session: false },

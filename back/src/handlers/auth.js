@@ -1,18 +1,18 @@
+import { authServer } from '../lib/oauth2';
 /*
-import {
-    authServer,
-} from '../lib/oauth2';
 import UserModel from '../oauth/models/user';
 import {errorResponse} from '../oauth/helpers/response';
 import randomString from '../oauth/helpers/randomString';
 import AccessTokenModel from "../oauth/models/access_token";
 import RefreshTokenModel from "../oauth/models/refresh_token";
+*/
 
 export const token = [
     authServer.token(),
     authServer.errorHandler(),
 ];
 
+/*
 export const createUser = async (req, res) => {
     try {
         const {
@@ -51,7 +51,9 @@ export const createUser = async (req, res) => {
         res.status(500).json(errorResponse(e));
     }
 };
+*/
 
+/*
 export const validateUser = async (req, res) => {
     try {
         const {
@@ -85,7 +87,9 @@ export const validateUser = async (req, res) => {
         res.status(500).json(errorResponse(e));
     }
 };
+*/
 
+/*
 export const logout = async (req, res) => {
     try {
         const userId = req.user.userId;
@@ -102,3 +106,12 @@ export const logout = async (req, res) => {
     }
 };
 */
+
+/*
+import {
+    token,
+    createUser,
+    validateUser,
+    logout,
+} from '../handlers/auth';
+ */

@@ -1,28 +1,26 @@
-/*
 import express from 'express';
 import {
     token,
-    createUser,
-    validateUser,
-    logout,
+    // createUser,
+    // validateUser,
+    // logout,
 } from '../handlers/auth';
+/*
 import {
     getMe
 } from '../handlers/users';
+*/
 import {
-    authUser,
+    // authUser,
     getToken,
 } from '../lib/oauth2';
 
 const router = express.Router();
 
 router.post('/token', getToken, token);
-
-router.post('/sign-in', createUser);
-router.post('/validate', validateUser);
-router.post('/logout', authUser, logout);
-
-router.get('/me', authUser, getMe);
+// router.post('/sign-in', createUser);
+// router.post('/validate', validateUser);
+// router.post('/logout', authUser, logout);
+// router.get('/me', authUser, getMe);
 
 export default router;
-*/
