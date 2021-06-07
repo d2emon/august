@@ -7,7 +7,7 @@
       <h2>{{ article.title }}</h2>
       <div
         class="article-content main-page-content"
-        v-html="article.text"
+        v-html="article.html"
       />
       <div class="share">
         <span>
