@@ -6,8 +6,8 @@ import path from 'path';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import {error404, errorHandler,} from './handlers/error';
-// import passport from 'passport';
-// import oauth from './lib/oauth';
+import passport from 'passport';
+import oauth from './lib/oauth';
 
 import db, {connect} from './helpers/mongo';
 import debug from './helpers/debug';
@@ -29,6 +29,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(publicPath));
+app.use(passport.initialize());
+
+app.locals.oauth = oauth;
 
 app.set('dbConnection', connect(process.env.MONGO_URI))
 
