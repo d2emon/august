@@ -5,6 +5,7 @@
       slug="wiki"
       :item="item"
       @load="load"
+      @delete="deleteItem"
     >
       <wiki-form
         :form-values="item"
@@ -42,6 +43,7 @@ export default {
       'fetchPageById',
       'addPage',
       'updatePage',
+      'deletePage',
     ]),
     load(itemId) {
       this.fetchPageById(itemId);
@@ -55,6 +57,10 @@ export default {
       } else {
         this.addPage(values);
       }
+      this.$router.push('/admin/wiki');
+    },
+    deleteItem(id) {
+      this.deletePage(id);
       this.$router.push('/admin/wiki');
     },
   },

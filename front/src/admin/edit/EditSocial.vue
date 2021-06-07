@@ -5,6 +5,7 @@
       slug="social"
       :item="item"
       @load="load"
+      @delete="deleteItem"
     >
       <social-form
         :form-values="item"
@@ -44,6 +45,7 @@ export default {
       'fetchSocials',
       'addSocial',
       'updateSocial',
+      'deleteSocial',
     ]),
     load() {
       this.fetchSocials();
@@ -57,6 +59,10 @@ export default {
       } else {
         this.addSocial(values);
       }
+      this.$router.push('/admin/social');
+    },
+    deleteItem(id) {
+      this.deleteSocial(id);
       this.$router.push('/admin/social');
     },
   },

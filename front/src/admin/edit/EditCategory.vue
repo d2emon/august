@@ -5,6 +5,7 @@
       slug="category"
       :item="item"
       @load="load"
+      @delete="deleteItem"
     >
       <category-form
         :form-values="item"
@@ -44,6 +45,7 @@ export default {
       'fetchCategories',
       'addCategory',
       'updateCategory',
+      'deleteCategory',
     ]),
     load() {
       this.fetchCategories();
@@ -57,6 +59,10 @@ export default {
       } else {
         this.addCategory(values);
       }
+      this.$router.push('/admin/category');
+    },
+    deleteItem(id) {
+      this.deleteCategory(id);
       this.$router.push('/admin/category');
     },
   },

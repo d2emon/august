@@ -5,6 +5,7 @@
       slug="project"
       :item="item"
       @load="load"
+      @delete="deleteItem"
     >
       <project-form
         :form-values="item"
@@ -45,6 +46,7 @@ export default {
       'addProject',
       'updateProject',
       'fetchServices',
+      'deleteProject',
     ]),
     load(itemId) {
       this.fetchServices();
@@ -59,6 +61,10 @@ export default {
       } else {
         this.addProject(values);
       }
+      this.$router.push('/admin/project');
+    },
+    deleteItem(id) {
+      this.deleteProject(id);
       this.$router.push('/admin/project');
     },
   },

@@ -5,6 +5,7 @@
       slug="article"
       :item="item"
       @load="load"
+      @delete="deleteItem"
     >
       <article-form
         :form-values="item"
@@ -45,6 +46,7 @@ export default {
       'fetchArticleById',
       'addArticle',
       'updateArticle',
+      'deleteArticle',
     ]),
     load(itemId) {
       this.fetchCategories();
@@ -59,6 +61,10 @@ export default {
       } else {
         this.addArticle(values);
       }
+      this.$router.push('/admin/article');
+    },
+    deleteItem(id) {
+      this.deleteArticle(id);
       this.$router.push('/admin/article');
     },
   },

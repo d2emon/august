@@ -5,6 +5,7 @@
       slug="user"
       :item="item"
       @load="load"
+      @delete="deleteItem"
     >
       <user-form
         :form-values="item"
@@ -42,6 +43,7 @@ export default {
       'fetchServiceById',
       'addService',
       'updateService',
+      'deleteService',
     ]),
     load(itemId) {
       this.fetchServiceById(itemId);
@@ -55,6 +57,10 @@ export default {
       } else {
         this.addService(values);
       }
+      this.$router.push('/admin/user');
+    },
+    deleteItem(id) {
+      this.deleteService(id);
       this.$router.push('/admin/user');
     },
   },
