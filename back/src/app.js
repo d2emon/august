@@ -6,6 +6,8 @@ import path from 'path';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import {error404, errorHandler,} from './handlers/error';
+// import passport from 'passport';
+// import oauth from './lib/oauth';
 
 import db, {connect} from './helpers/mongo';
 import debug from './helpers/debug';
