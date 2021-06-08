@@ -198,6 +198,9 @@ export default {
 .paging a:hover, .share span:first-child a:hover {
   text-decoration:underline;
 }
+.section {
+  margin-top: 1px;
+}
 .section-col {
   margin:0;
   text-align:left;
