@@ -69,4 +69,5 @@ export default {
     .then(({ data }) => prepareBlog(data)),
 
   getToken: authApi.getToken,
+  checkUser: authApi.checkUser,
 };

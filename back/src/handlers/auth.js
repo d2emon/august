@@ -52,41 +52,16 @@ export const createUser = async (req, res) => {
 };
 */
 
-/*
-export const validateUser = async (req, res) => {
+export const checkUser = async (req, res) => {
     try {
-        const {
-            validationCode,
-        } = req.body;
-        if (!validationCode) {
-            return res.status(400).json(errorResponse(new Error('No code submitted')));
-        }
-        if (validationCode.length > 40) {
-            return res.status(400).json(errorResponse(new Error('The length of the validation code is limited to 40 characters')));
-        }
-
-        const user = await UserModel.findOne({ validationCode });
-        if (!user) {
-            return res.status(400).json(errorResponse(new Error('Incorrect Code')));
-        }
-        if (user.isValid) {
-            return res.status(400).json(errorResponse(new Error('That user has already been validated')));
-        }
-        user.isValid = true;
-        user.save();
-
+        console.log('USER', req.user);
         return res.json({
-            result: true,
-            title: 'Success',
-            message: 'Your Merchant Empires user was successfully validated.\n'
-                + '\n'
-                + 'You may now log in and join the game of Merchant Empires.',
+            user: req.user,
         });
     } catch (e) {
-        res.status(500).json(errorResponse(e));
+        return res.status(500).json({ error: e.message });
     }
 };
-*/
 
 export const logout = async (req, res) => {
     try {

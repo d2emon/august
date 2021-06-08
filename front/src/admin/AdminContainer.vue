@@ -18,6 +18,23 @@
       </v-btn>
     </v-app-bar>
 
+    <v-dialog
+      v-model="showLogin"
+      persistent
+      max-width="600px"
+    >
+      <v-card>
+        <v-card-title>
+          <span class="text-h5">Администрирование сайта</span>
+        </v-card-title>
+        <v-container>
+          <login-form
+            @submit="login"
+          />
+        </v-container>
+      </v-card>
+    </v-dialog>
+
     <v-main class="grey lighten-3">
       <v-container>
         <v-row>
@@ -46,6 +63,7 @@ export default {
   name: 'Admin',
   components: {
     AdminNavigation: () => import('./AdminNavigation.vue'),
+    LoginForm: () => import('./forms/LoginForm.vue'),
   },
   computed: {
     ...mapState([
@@ -54,17 +72,34 @@ export default {
   },
   data: () => ({
     user: 'Username',
+    showLogin: false,
   }),
   methods: {
     ...mapActions([
       'getToken',
+      'checkToken',
     ]),
+    async login(values) {
+      this.showLogin = false;
+      const result = await this.getToken(values);
+      if (!result) {
+        this.showLogin = true;
+      }
+    },
+    async check() {
+      const user = await this.checkToken();
+      if (!user) {
+        this.showLogin = true;
+      }
+    },
   },
   mounted() {
-    this.getToken({
-      username: 'username',
-      password: 'password',
-    });
+    this.check();
+  },
+  watch: {
+    $route() {
+      this.check();
+    },
   },
 };
 </script>

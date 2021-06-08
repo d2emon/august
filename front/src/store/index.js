@@ -122,8 +122,22 @@ export default new Vuex.Store({
         password,
       )
       .then((data) => {
-        commit('setAccessToken', data.access_token);
-        commit('setRefreshToken', data.refresh_token);
+        if (data) {
+          commit('setAccessToken', data.access_token);
+          commit('setRefreshToken', data.refresh_token);
+          return true;
+        }
+        commit('setAccessToken', null);
+        commit('setRefreshToken', null);
+        return false;
+      }),
+    checkToken: ({ commit, state }) => api.checkUser(state.accessToken)
+      .then((result) => {
+        if (!result) {
+          commit('setAccessToken', null);
+          commit('setRefreshToken', null);
+        }
+        return result;
       }),
   },
   modules: {

@@ -18,6 +18,19 @@ export default {
         },
       },
     )
-      .then((response) => (response.data));
+      .then((response) => (response.data))
+      .catch(() => null);
   },
+  checkUser: (token) => api.get('/auth/check', {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then(({ data }) => (data.user))
+    .catch((e) => {
+      if (e.response && (e.response.status === 401)) {
+        return null;
+      }
+      throw new Error(e);
+    }),
 };

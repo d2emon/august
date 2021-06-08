@@ -15,13 +15,10 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    name: String,
-    patronymic: String,
-    surname: String,
-    email: String,
-    phone: String,
-    date: Date,
-    group: [String],
+    date: {
+        type: Date,
+        default: Date.now,
+    },
 });
 
 userSchema.methods.encryptPassword = function (password) {

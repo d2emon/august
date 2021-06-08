@@ -33,7 +33,6 @@ export default {
       'articles',
     ]),
     category() {
-      console.log(this.articleCategories);
       return this.articleCategories
         ? this.articleCategories.find((item) => (item.slug === this.$route.params.id))
         : null;

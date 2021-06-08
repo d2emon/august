@@ -1,0 +1,3 @@
+set USERNAME=admin
+set PASSWORD=admin
+npm start
