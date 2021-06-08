@@ -5,12 +5,16 @@ import express from 'express';
 import path from 'path';
 import logger from 'morgan';
 import mongoose from 'mongoose';
-import {error404, errorHandler,} from './handlers/error';
 import passport from 'passport';
-import oauth from './lib/oauth';
+import passportHelper from './helpers/passportHelper';
 
-import db, {connect} from './helpers/mongo';
+import {
+    error404,
+    errorHandler,
+} from './handlers/error';
+import config from './helpers/config';
 import debug from './helpers/debug';
+import db, {connect} from './helpers/mongo';
 
 import authRoutes from './routes/auth';
 import blogRoutes from './routes/blog';
@@ -31,9 +35,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(publicPath));
 app.use(passport.initialize());
 
-app.locals.oauth = oauth;
+app.locals.oauth = passportHelper;
 
-app.set('dbConnection', connect(process.env.MONGO_URI))
+app.set('dbConnection', connect(config.MONGO_URI))
 
 mongoose.connection.on('error', error => debug('db')(error || ''));
 mongoose.connection.once('open', () => debug('db')('MongoDB connected'));

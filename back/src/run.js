@@ -1,9 +1,10 @@
 import http from 'http';
 import app from './app';
+import config from './helpers/config';
 import debug from './helpers/debug';
 import normalizePort from './helpers/normalizePort';
 
-app.set('port', normalizePort(process.env.PORT || 3000));
+app.set('port', normalizePort(config.PORT));
 
 const server = http.createServer(app);
 

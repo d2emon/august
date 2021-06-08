@@ -1,3 +1,4 @@
 import debug from 'debug';
+import config from './config';
 
-export default namespace => debug(namespace ? `${process.env.APP_NAME}:${namespace}` : process.env.APP_NAME);
+export default namespace => debug(namespace ? `${config.APP_NAME}:${namespace}` : config.APP_NAME);

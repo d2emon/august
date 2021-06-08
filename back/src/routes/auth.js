@@ -13,7 +13,7 @@ import {
 import {
     // authUser,
     getToken,
-} from '../lib/oauth2';
+} from '../helpers/passportHelper';
 
 const router = express.Router();
 

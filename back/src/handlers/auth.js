@@ -1,4 +1,4 @@
-import { authServer } from '../lib/oauth2';
+import { authServer } from '../helpers/oauth2';
 /*
 import UserModel from '../oauth/models/user';
 import {errorResponse} from '../oauth/helpers/response';
@@ -106,12 +106,3 @@ export const logout = async (req, res) => {
     }
 };
 */
-
-/*
-import {
-    token,
-    createUser,
-    validateUser,
-    logout,
-} from '../handlers/auth';
- */
