@@ -217,6 +217,9 @@ export default {
   background:none;
   margin:0 0 15px!important;
   list-style: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 175px;
 }
 .section-col ul li a {
   font-family:"Myriad Pro", sans-serif;

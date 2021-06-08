@@ -26,4 +26,8 @@ export default {
   ],
   defaultPage: 'index',
   defaultAboutPage: 'about',
+  auth: {
+    username: 'augustClient',
+    password: 'thereisnospoon',
+  },
 };

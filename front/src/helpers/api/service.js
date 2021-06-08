@@ -19,7 +19,19 @@ export default {
     .then(({ data }) => prepareService(data.service)),
   getServiceById: (serviceId) => api.get(`/service/id/${serviceId}`)
     .then(({ data }) => prepareService(data.service)),
-  addService: (values) => api.post('/service', values),
-  setService: (serviceId, values) => api.put(`/service/${serviceId}`, values),
-  deleteService: (serviceId) => api.delete(`/service/${serviceId}`),
+  addService: (token, values) => api.post('/service', values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  setService: (token, serviceId, values) => api.put(`/service/${serviceId}`, values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  deleteService: (token, serviceId) => api.delete(`/service/${serviceId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
 };

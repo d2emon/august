@@ -3,7 +3,7 @@ import {
     token,
     // createUser,
     // validateUser,
-    // logout,
+    logout,
 } from '../handlers/auth';
 /*
 import {
@@ -11,16 +11,16 @@ import {
 } from '../handlers/users';
 */
 import {
-    // authUser,
+    authUser,
     getToken,
 } from '../helpers/passportHelper';
 
 const router = express.Router();
 
 router.post('/token', getToken, token);
+router.post('/logout', authUser, logout);
 // router.post('/sign-in', createUser);
 // router.post('/validate', validateUser);
-// router.post('/logout', authUser, logout);
 // router.get('/me', authUser, getMe);
 
 export default router;

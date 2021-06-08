@@ -17,7 +17,19 @@ export default {
     .then(({ data }) => preparePage(data.page)),
   getPageById: (pageId) => api.get(`/page/id/${pageId}`)
     .then(({ data }) => preparePage(data.page)),
-  addPage: (values) => api.post('/page', values),
-  setPage: (pageId, values) => api.put(`/page/${pageId}`, values),
-  deletePage: (pageId) => api.delete(`/page/${pageId}`),
+  addPage: (token, values) => api.post('/page', values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  setPage: (token, pageId, values) => api.put(`/page/${pageId}`, values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  deletePage: (token, pageId) => api.delete(`/page/${pageId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
 };

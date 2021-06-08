@@ -9,12 +9,12 @@ import {
 } from '../handlers/users';
 import {
     authUser,
-} from '../lib/oauth2';
+} from '../helpers/passportHelper';
 
 const router = express.Router();
 
 router.get('/', listUsers);
-router.post('/', addUser);
+router.post('/', authUser, addUser);
 router.get('/:id', getUser);
 router.put('/:id', authUser, editUser);
 router.delete('/:id', authUser, delUser);

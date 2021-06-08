@@ -1,11 +1,10 @@
 import { authServer } from '../helpers/oauth2';
 /*
 import UserModel from '../oauth/models/user';
-import {errorResponse} from '../oauth/helpers/response';
 import randomString from '../oauth/helpers/randomString';
-import AccessTokenModel from "../oauth/models/access_token";
-import RefreshTokenModel from "../oauth/models/refresh_token";
 */
+import AccessTokenModel from '../models/accessToken';
+import RefreshTokenModel from '../models/refreshToken';
 
 export const token = [
     authServer.token(),
@@ -89,9 +88,9 @@ export const validateUser = async (req, res) => {
 };
 */
 
-/*
 export const logout = async (req, res) => {
     try {
+        console.log('USER', req.user);
         const userId = req.user.userId;
         await Promise.all([
             RefreshTokenModel.remove({ userId }),
@@ -102,7 +101,6 @@ export const logout = async (req, res) => {
             result: true,
         });
     } catch (e) {
-        res.status(500).json(errorResponse(e));
+        return res.status(500).json({ error: e.message });
     }
 };
-*/

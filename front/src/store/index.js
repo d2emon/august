@@ -24,6 +24,9 @@ export default new Vuex.Store({
     recentArticles: [],
     article: null,
     articleCategories: [],
+
+    accessToken: null,
+    refreshToken: null,
   },
   mutations: {
     setServices: (state, value) => Vue.set(state, 'services', value),
@@ -38,6 +41,8 @@ export default new Vuex.Store({
     setPopularArticles: (state, value) => Vue.set(state, 'popularArticles', value),
     setRecentArticles: (state, value) => Vue.set(state, 'recentArticles', value),
     setArticleCategories: (state, value) => Vue.set(state, 'articleCategories', value),
+    setAccessToken: (state, value) => Vue.set(state, 'accessToken', value),
+    setRefreshToken: (state, value) => Vue.set(state, 'refreshToken', value),
   },
   actions: {
     fetchServices: ({ commit }) => api.getServices()
@@ -46,9 +51,9 @@ export default new Vuex.Store({
       .then((service) => commit('setService', service)),
     fetchServiceById: ({ commit }, id) => api.getServiceById(id)
       .then((service) => commit('setService', service)),
-    addService: (context, values) => api.addService(values),
-    updateService: (context, { id, values }) => api.setService(id, values),
-    deleteService: (context, id) => api.deleteService(id),
+    addService: ({ state }, values) => api.addService(state.accessToken, values),
+    updateService: ({ state }, { id, values }) => api.setService(state.accessToken, id, values),
+    deleteService: ({ state }, id) => api.deleteService(state.accessToken, id),
 
     fetchProjects: ({ commit }) => api.getProjects()
       .then((projects) => commit('setProjects', projects)),
@@ -60,15 +65,15 @@ export default new Vuex.Store({
       .then((project) => commit('setProject', project)),
     fetchProjectById: ({ commit }, id) => api.getProjectById(id)
       .then((project) => commit('setProject', project)),
-    addProject: (context, values) => api.addProject(values),
-    updateProject: (context, { id, values }) => api.setProject(id, values),
-    deleteProject: (context, id) => api.deleteProject(id),
+    addProject: ({ state }, values) => api.addProject(state.accessToken, values),
+    updateProject: ({ state }, { id, values }) => api.setProject(state.accessToken, id, values),
+    deleteProject: ({ state }, id) => api.deleteProject(state.accessToken, id),
 
     fetchSocials: ({ commit }) => api.getSocials()
       .then((socials) => commit('setSocials', socials)),
-    addSocial: (context, values) => api.addSocial(values),
-    updateSocial: (context, { id, values }) => api.setSocial(id, values),
-    deleteSocial: (context, id) => api.deleteSocial(id),
+    addSocial: ({ state }, values) => api.addSocial(state.accessToken, values),
+    updateSocial: ({ state }, { id, values }) => api.setSocial(state.accessToken, id, values),
+    deleteSocial: ({ state }, id) => api.deleteSocial(state.accessToken, id),
 
     fetchPages: ({ commit }) => api.getPages()
       .then((pages) => commit('setPages', pages)),
@@ -76,15 +81,15 @@ export default new Vuex.Store({
       .then((page) => commit('setPage', page)),
     fetchPageById: ({ commit }, pageId) => api.getPageById(pageId)
       .then((page) => commit('setPage', page)),
-    addPage: (context, values) => api.addPage(values),
-    updatePage: (context, { id, values }) => api.setPage(id, values),
-    deletePage: (context, id) => api.deletePage(id),
+    addPage: ({ state }, values) => api.addPage(state.accessToken, values),
+    updatePage: ({ state }, { id, values }) => api.setPage(state.accessToken, id, values),
+    deletePage: ({ state }, id) => api.deletePage(state.accessToken, id),
 
     fetchCategories: ({ commit }) => api.getCategories()
       .then((categories) => commit('setArticleCategories', categories)),
-    addCategory: (context, values) => api.addCategory(values),
-    updateCategory: (context, { id, values }) => api.setCategory(id, values),
-    deleteCategory: (context, id) => api.deleteCategory(id),
+    addCategory: ({ state }, values) => api.addCategory(state.accessToken, values),
+    updateCategory: ({ state }, { id, values }) => api.setCategory(state.accessToken, id, values),
+    deleteCategory: ({ state }, id) => api.deleteCategory(state.accessToken, id),
 
     fetchArticles: ({ commit }) => api.getArticles()
       .then((articles) => commit('setArticles', articles)),
@@ -96,9 +101,9 @@ export default new Vuex.Store({
       .then((article) => commit('setArticle', article)),
     fetchLatestArticle: ({ commit }) => api.getLatestArticle()
       .then((article) => commit('setArticle', article)),
-    addArticle: (context, values) => api.addArticle(values),
-    updateArticle: (context, { id, values }) => api.setArticle(id, values),
-    deleteArticle: (context, id) => api.deleteArticle(id),
+    addArticle: ({ state }, values) => api.addArticle(state.accessToken, values),
+    updateArticle: ({ state }, { id, values }) => api.setArticle(state.accessToken, id, values),
+    deleteArticle: ({ state }, id) => api.deleteArticle(state.accessToken, id),
 
     fetchBlog: ({ commit }) => api
       .getBlog()
@@ -106,6 +111,19 @@ export default new Vuex.Store({
         commit('setPopularArticles', blog.popular);
         commit('setRecentArticles', blog.recent);
         commit('setArticleCategories', blog.categories);
+      }),
+
+    getToken: ({ commit }, {
+      username,
+      password,
+    }) => api
+      .getToken(
+        username,
+        password,
+      )
+      .then((data) => {
+        commit('setAccessToken', data.access_token);
+        commit('setRefreshToken', data.refresh_token);
       }),
   },
   modules: {

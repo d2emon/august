@@ -26,7 +26,19 @@ export default {
     .then(({ data }) => prepareArticle(data.article)),
   getArticleById: (articleId) => api.get(`/blog/articles/id/${articleId}`)
     .then(({ data }) => prepareArticle(data.article)),
-  addArticle: (values) => api.post('/blog/articles', values),
-  setArticle: (articleId, values) => api.put(`/blog/articles/${articleId}`, values),
-  deleteArticle: (articleId) => api.delete(`/blog/articles/${articleId}`),
+  addArticle: (token, values) => api.post('/blog/articles', values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  setArticle: (token, articleId, values) => api.put(`/blog/articles/${articleId}`, values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  deleteArticle: (token, articleId) => api.delete(`/blog/articles/${articleId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
 };

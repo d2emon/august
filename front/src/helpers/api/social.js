@@ -12,7 +12,19 @@ export default {
     .then(({ data }) => (data.socials ? data.socials.map(prepareSocial) : [])),
   getSocial: (socialId) => api.get(`/social/${socialId}`)
     .then(({ data }) => prepareSocial(data.social)),
-  addSocial: (values) => api.post('/social', values),
-  setSocial: (socialId, values) => api.put(`/social/${socialId}`, values),
-  deleteSocial: (socialId) => api.delete(`/social/${socialId}`),
+  addSocial: (token, values) => api.post('/social', values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  setSocial: (token, socialId, values) => api.put(`/social/${socialId}`, values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  deleteSocial: (token, socialId) => api.delete(`/social/${socialId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
 };

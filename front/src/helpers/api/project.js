@@ -21,9 +21,21 @@ export default {
     .then(({ data }) => prepareProject(data.project)),
   getProjectById: (projectId) => api.get(`/project/id/${projectId}`)
     .then(({ data }) => prepareProject(data.project)),
-  addProject: (values) => api.post('/project', values),
-  setProject: (projectId, values) => api.put(`/project/${projectId}`, values),
-  deleteProject: (projectId) => api.delete(`/project/${projectId}`),
+  addProject: (token, values) => api.post('/project', values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  setProject: (token, projectId, values) => api.put(`/project/${projectId}`, values, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
+  deleteProject: (token, projectId) => api.delete(`/project/${projectId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }),
 
   getLatestProjects: () => api.get('/project/latest')
     .then(({ data }) => (data.projects ? data.projects.map(prepareProject) : [])),

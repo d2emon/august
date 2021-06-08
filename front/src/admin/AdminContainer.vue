@@ -37,7 +37,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import {
+  mapState,
+  mapActions,
+} from 'vuex';
 
 export default {
   name: 'Admin',
@@ -52,6 +55,17 @@ export default {
   data: () => ({
     user: 'Username',
   }),
+  methods: {
+    ...mapActions([
+      'getToken',
+    ]),
+  },
+  mounted() {
+    this.getToken({
+      username: 'username',
+      password: 'password',
+    });
+  },
 };
 </script>
 

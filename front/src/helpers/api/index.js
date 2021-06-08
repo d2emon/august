@@ -5,6 +5,7 @@ import projectApi from './project';
 import socialApi from './social';
 import categoryApi, { prepareCategory } from './category';
 import articleApi, { prepareArticle } from './article';
+import authApi from './auth';
 
 const prepareBlog = (data) => {
   const {
@@ -66,4 +67,6 @@ export default {
 
   getBlog: () => api.get('/blog')
     .then(({ data }) => prepareBlog(data)),
+
+  getToken: authApi.getToken,
 };
