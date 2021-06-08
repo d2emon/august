@@ -1,3 +1,6 @@
+/**
+ * Скрипт добавления пользователя в БД
+ */
 import config from './helpers/config';
 import {connect} from './helpers/mongo';
 import UserModel from './models/user';

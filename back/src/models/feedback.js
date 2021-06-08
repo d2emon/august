@@ -1,5 +1,7 @@
+/**
+ * Модель данных в коллекции "Обратная связь"
+ */
 import mongoose, { Schema } from 'mongoose';
-import randomString from '../helpers/randomString';
 
 const feedbackSchema = new Schema({
     email: String,

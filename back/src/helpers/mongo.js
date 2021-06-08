@@ -1,3 +1,6 @@
+/**
+ * Хелпер для работы с mongoDb
+ */
 import mongoose from 'mongoose';
 
 export const connect = (uri) => mongoose.connect(uri, { useNewUrlParser: true });

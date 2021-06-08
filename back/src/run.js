@@ -1,3 +1,6 @@
+/**
+ * Скрипт запуска сервера
+ */
 import http from 'http';
 import app from './app';
 import config from './helpers/config';

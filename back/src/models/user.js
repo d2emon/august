@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Пользователи"
+ */
 import mongoose, { Schema } from 'mongoose';
 import crypto from 'crypto';
 import randomString from '../helpers/randomString';

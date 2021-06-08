@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Услуги"
+ */
 import mongoose, { Schema } from 'mongoose';
 
 const serviceSchema = new Schema({

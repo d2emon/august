@@ -1,3 +1,6 @@
+/**
+ * Хелпер для отладки сервера
+ */
 import debug from 'debug';
 import config from './config';
 

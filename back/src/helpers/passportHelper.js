@@ -1,3 +1,6 @@
+/**
+ * Работа с passport
+ */
 import passport from 'passport';
 import { BasicStrategy } from 'passport-http';
 import { Strategy as BearerStrategy } from 'passport-http-bearer';
@@ -8,6 +11,9 @@ import AccessTokenModel from '../models/accessToken';
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((user, done) => done(null, user));
 
+/**
+ * Обработчик стратегии Basic
+ */
 passport.use(new BasicStrategy(async (clientId, clientSecret, done) => {
     try {
         const client = {
@@ -23,6 +29,9 @@ passport.use(new BasicStrategy(async (clientId, clientSecret, done) => {
     }
 }));
 
+/**
+ * Обработчик стратегии Bearer
+ */
 passport.use(new BearerStrategy(async (token, done) => {
     try {
         const accessToken = await AccessTokenModel.findOne({ token });
@@ -47,22 +56,20 @@ passport.use(new BearerStrategy(async (token, done) => {
     }
 }));
 
-// Получение токена
+/**
+ * Получение токена авторизации
+ */
 export const getToken = passport.authenticate(
     'basic', // ['basic', 'oauth2-client-password'],
     { session: false },
 );
 
+/**
+ * Проверка токена авторизации
+ */
 export const authUser = passport.authenticate(
     'bearer',
     { session: false },
 );
-
-/*
-export const authLogin = passport.authenticate(
-    'oauth2-client-password',
-    { session: false },
-);
-*/
 
 export default passport;

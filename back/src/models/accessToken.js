@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Токены авторизации"
+ */
 import mongoose, { Schema } from 'mongoose';
 import randomString from '../helpers/randomString';
 

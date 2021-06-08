@@ -1,7 +1,13 @@
+/**
+ * Обработчики запросов, связанных с блогом
+ */
 import Article from '../models/article';
 import Category from '../models/category';
 import modelHandler from '../helpers/modelHandler';
 
+/**
+ * Обработчики запросов на создание, просмотр, редактирование и удаление статей
+ */
 export const articles = modelHandler(
     'articles',
     'article',
@@ -9,6 +15,9 @@ export const articles = modelHandler(
     (data) => (new Article(data)),
 );
 
+/**
+ * Обработчики запросов на создание, просмотр, редактирование и удаление категорий
+ */
 export const categories = modelHandler(
     'categories',
     'category',
@@ -16,6 +25,12 @@ export const categories = modelHandler(
     (data) => (new Category(data)),
 );
 
+/**
+ * Обработчик запроса на получение популярных и недавних статей
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 export const getBlog = async (req, res) => {
     try {
         const query = {};
@@ -32,6 +47,12 @@ export const getBlog = async (req, res) => {
     }
 }
 
+/**
+ * Обновление счетчика просмотров для страницы
+ * Добавление в статью ссылки на предыдущую и следующую статью
+ * @param article
+ * @returns {Promise<{date, viewed: *, nextPost: (*|null), id, text, categories, prevPost: (*|null), title, slug}>}
+ */
 const getArticle = async (article) => {
     let prevPost = null;
     let nextPost = null;
@@ -54,6 +75,12 @@ const getArticle = async (article) => {
     };
 };
 
+/**
+ * Обработчик запроса на получение списка статей в категории
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 export const articlesByCategory = async (req, res) => {
     try {
         const category = await Category.findOne({ slug: req.params.slug });
@@ -66,6 +93,12 @@ export const articlesByCategory = async (req, res) => {
     }
 }
 
+/**
+ * Обработчик запроса на просмотр статьи из блога
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 export const viewArticle = async (req, res) => {
     try {
         const result = await Article.findOne({ slug: req.params.slug });
@@ -76,6 +109,12 @@ export const viewArticle = async (req, res) => {
     }
 }
 
+/**
+ * Обработчик запроса на просмотр последней статьи из блога
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 export const viewLatestArticle = async (req, res) => {
     try {
         const result = await Article.findOne().sort({ date: -1 });

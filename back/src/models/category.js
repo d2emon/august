@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Категории"
+ */
 import mongoose, { Schema } from 'mongoose';
 
 const categorySchema = new Schema({

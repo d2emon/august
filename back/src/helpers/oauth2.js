@@ -1,3 +1,6 @@
+/**
+ * Работа с сервером OAuth 2.0
+ */
 import oauth2orize from 'oauth2orize';
 import config from './config';
 import UserModel from '../models/user';
@@ -7,7 +10,16 @@ import RefreshTokenModel from '../models/refreshToken';
 // Создаем сервер OAuth 2.0
 export const authServer = oauth2orize.createServer();
 
+/**
+ * Обновление токена авторизации
+ * @param userId
+ * @returns {Promise<{options: {expires_in}, accessToken: *, refreshToken: *}>}
+ */
 const updateTokens = async (userId) => {
+    /**
+     * Обновление токена авторизации
+     * @returns {Promise<*>}
+     */
     const updateAccessToken = async () => {
         AccessTokenModel.remove({ userId });
         const token = new AccessTokenModel({
@@ -16,6 +28,10 @@ const updateTokens = async (userId) => {
         await token.save();
         return token;
     };
+    /**
+     * Обновление токена обновления
+     * @returns {Promise<*>}
+     */
     const updateRefreshToken = async () => {
         RefreshTokenModel.remove({ userId });
         const token = new RefreshTokenModel({
@@ -41,7 +57,9 @@ const updateTokens = async (userId) => {
     };
 };
 
-// Отдаем accessToken в ответ на логин и пароль
+/**
+ * Отдаем accessToken в ответ на логин и пароль
+ */
 authServer.exchange(oauth2orize.exchange.password(async (client, username, password, scope, done) => {
     try {
         const user = await UserModel.findOne({ username });
@@ -65,7 +83,9 @@ authServer.exchange(oauth2orize.exchange.password(async (client, username, passw
     }
 }));
 
-// Отдаем accessToken в ответ на refreshToken
+/**
+ * Отдаем accessToken в ответ на refreshToken
+ */
 authServer.exchange(oauth2orize.exchange.refreshToken(async (client, refreshToken, scope, done) => {
     try {
         const oldToken = await RefreshTokenModel.findOne({ refreshToken });

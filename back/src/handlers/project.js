@@ -1,7 +1,13 @@
+/**
+ * Обработчики запросов, связанных с портфолио
+ */
 import Project from '../models/project';
 import modelHandler from '../helpers/modelHandler';
-import Service from "../models/service";
 
+/**
+ * Обработчики запросов на создание, просмотр, редактирование и удаление
+ * проекта из БД
+ */
 export default modelHandler(
     'projects',
     'project',
@@ -9,6 +15,12 @@ export default modelHandler(
     (data) => (new Project(data)),
 );
 
+/**
+ * Обработчик запроса на получение недавних проектов
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 export const getLatestProjects = async (req, res) => {
     try {
         const projects = await Project.find().sort({ date: -1 }).limit(3);
@@ -18,6 +30,12 @@ export const getLatestProjects = async (req, res) => {
     }
 }
 
+/**
+ * Обработчик события на получение проектов по услуге
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 export const getServiceProjects = async (req, res) => {
     try {
         const projects = await Project.find({ serviceId: req.params.serviceId });

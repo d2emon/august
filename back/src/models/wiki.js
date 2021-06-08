@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Вики-страницы"
+ */
 import mongoose, { Schema } from 'mongoose';
 
 const wikiSchema = new Schema({

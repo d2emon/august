@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Статьи"
+ */
 import mongoose, { Schema } from 'mongoose';
 
 const articleSchema = new Schema({
@@ -5,7 +8,6 @@ const articleSchema = new Schema({
     title: String,
     text: String,
     date: Date,
-    // isVisible: Boolean,
     viewed: Number,
     categories: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
 });

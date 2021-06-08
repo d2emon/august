@@ -1,3 +1,6 @@
+/**
+ * Модель данных в коллекции "Социальные сети"
+ */
 import mongoose, { Schema } from 'mongoose';
 
 const socialSchema = new Schema({
