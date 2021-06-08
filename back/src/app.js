@@ -22,6 +22,8 @@ import pageRoutes from './routes/pages';
 import projectRoutes from './routes/projects';
 import serviceRoutes from './routes/services';
 import socialRoutes from './routes/social';
+import userRoutes from './routes/users';
+import emailRoutes from './routes/emails';
 
 const app = express();
 
@@ -48,6 +50,8 @@ app.use('/api/v1.0/page', pageRoutes);
 app.use('/api/v1.0/project', projectRoutes);
 app.use('/api/v1.0/service', serviceRoutes);
 app.use('/api/v1.0/social', socialRoutes);
+app.use('/api/v1.0/user', userRoutes);
+app.use('/api/v1.0/email', emailRoutes);
 
 app.use(error404);
 app.use(errorHandler(app.get('env')));

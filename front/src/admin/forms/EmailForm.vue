@@ -2,18 +2,8 @@
   <v-container>
     <v-form>
       <v-text-field
-        label="Имя пользователя"
-        v-model="username"
-      />
-      <v-text-field
-        label="Пароль"
-        type="password"
-        v-model="password"
-      />
-      <v-text-field
-        label="Дата регистрации"
-        :value="dateFormatter(date)"
-        readonly
+        label="Адрес электронной почты"
+        v-model="email"
       />
       <v-card-actions>
         <v-btn
@@ -34,26 +24,19 @@ export default {
   name: 'UserForm',
   data: () => ({
     id: null,
-    username: '',
-    password: '',
-    date: new Date(),
+    email: '',
   }),
   methods: {
     load(values) {
       this.id = (values && values.id) || null;
-      this.username = (values && values.username) || '';
-      this.date = (values && values.date) || new Date();
+      this.email = (values && values.email) || '';
     },
     submit() {
-      const values = {
-        username: this.username,
-      };
-      if (this.password) {
-        values.password = this.password;
-      }
       this.$emit('submit', {
         id: this.id,
-        values,
+        values: {
+          email: this.email,
+        },
       });
     },
     dateFormatter,

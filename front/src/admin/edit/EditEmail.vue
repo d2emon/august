@@ -1,13 +1,13 @@
 <template>
   <v-container>
     <edit-item
-      title="Пользователи"
-      slug="user"
+      title="Рассылка"
+      slug="email"
       :item="item"
       @load="load"
       @delete="deleteItem"
     >
-      <user-form
+      <email-form
         :form-values="item"
         @submit="submit"
       />
@@ -22,46 +22,46 @@ import {
 } from 'vuex';
 
 export default {
-  name: 'EditUser',
+  name: 'EditEmail',
   components: {
     EditItem: () => import('./EditItem.vue'),
-    UserForm: () => import('../forms/UserForm.vue'),
+    EmailForm: () => import('../forms/EmailForm.vue'),
   },
   computed: {
     ...mapState([
-      'user',
+      'email',
     ]),
     itemId() {
       return this.$route.params.id;
     },
     item() {
-      return this.$route.params.id ? this.user : null;
+      return this.$route.params.id ? this.email : null;
     },
   },
   methods: {
     ...mapActions([
-      'fetchUser',
-      'addUser',
-      'updateUser',
-      'deleteUser',
+      'fetchEmail',
+      'addEmail',
+      'updateEmail',
+      'deleteEmail',
     ]),
     load(itemId) {
-      this.fetchUser(itemId);
+      this.fetchEmail(itemId);
     },
     submit({ id, values }) {
       if (id) {
-        this.updateUser({
+        this.updateEmail({
           id,
           values,
         });
       } else {
-        this.addUser(values);
+        this.addEmail(values);
       }
-      this.$router.push('/admin/user');
+      this.$router.push('/admin/email');
     },
     deleteItem(id) {
-      this.deleteUser(id);
-      this.$router.push('/admin/user');
+      this.deleteEmail(id);
+      this.$router.push('/admin/email');
     },
   },
 };

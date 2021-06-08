@@ -1,8 +1,8 @@
 <template>
   <admin-items
-    :items="users"
-    title="Пользователи"
-    slug="user"
+    :items="emails"
+    title="Рассылка"
+    slug="email"
   />
 </template>
 
@@ -13,26 +13,26 @@ import {
 } from 'vuex';
 
 export default {
-  name: 'Users',
+  name: 'Emails',
   components: {
     AdminItems: () => import('./AdminItems.vue'),
   },
   computed: {
     ...mapState([
-      'users',
+      'emails',
     ]),
   },
   methods: {
     ...mapActions([
-      'fetchUsers',
+      'fetchEmails',
     ]),
   },
   mounted() {
-    this.fetchUsers();
+    this.fetchEmails();
   },
   watch: {
     $route() {
-      this.fetchUsers();
+      this.fetchEmails();
     },
   },
 };

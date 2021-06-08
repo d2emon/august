@@ -2,7 +2,9 @@
   <div class="sidebar">
     <logo id="logo" :title="title" />
     <nav-menu :navigation="navigation" />
-    <feedback-form />
+    <feedback-form
+      @submit="submitFeedback"
+    />
     <social-media :socials="socials" />
     <div class="copyright">Автор сайта: {{ author }}</div>
   </div>
@@ -31,7 +33,13 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions(['fetchSocials']),
+    ...mapActions([
+      'fetchSocials',
+      'addEmail',
+    ]),
+    submitFeedback(email) {
+      this.addEmail({ email });
+    },
   },
   mounted() {
     this.fetchSocials();

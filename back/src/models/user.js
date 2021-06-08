@@ -44,6 +44,7 @@ userSchema.virtual('password')
 
 userSchema.options.toJSON = {
     transform: (doc) => ({
+        id: doc.id,
         username: doc.username,
         name: doc.name,
         patronymic: doc.patronymic,

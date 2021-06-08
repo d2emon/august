@@ -18,6 +18,10 @@ export default new Vuex.Store({
     socials: [],
     pages: [],
     page: null,
+    users: [],
+    user: null,
+    emails: [],
+    email: null,
 
     articles: [],
     popularArticles: [],
@@ -39,6 +43,10 @@ export default new Vuex.Store({
     setPage: (state, value) => Vue.set(state, 'page', value),
     setArticles: (state, value) => Vue.set(state, 'articles', value),
     setArticle: (state, value) => Vue.set(state, 'article', value),
+    setUsers: (state, value) => Vue.set(state, 'users', value),
+    setUser: (state, value) => Vue.set(state, 'user', value),
+    setEmails: (state, value) => Vue.set(state, 'emails', value),
+    setEmail: (state, value) => Vue.set(state, 'email', value),
     setPopularArticles: (state, value) => Vue.set(state, 'popularArticles', value),
     setRecentArticles: (state, value) => Vue.set(state, 'recentArticles', value),
     setArticleCategories: (state, value) => Vue.set(state, 'articleCategories', value),
@@ -106,6 +114,22 @@ export default new Vuex.Store({
     addArticle: ({ state }, values) => api.addArticle(state.accessToken, values),
     updateArticle: ({ state }, { id, values }) => api.setArticle(state.accessToken, id, values),
     deleteArticle: ({ state }, id) => api.deleteArticle(state.accessToken, id),
+
+    fetchUsers: ({ commit }) => api.getUsers()
+      .then((users) => commit('setUsers', users)),
+    fetchUser: ({ commit }, id) => api.getUser(id)
+      .then((user) => commit('setUser', user)),
+    addUser: ({ state }, values) => api.addUser(state.accessToken, values),
+    updateUser: ({ state }, { id, values }) => api.setUser(state.accessToken, id, values),
+    deleteUser: ({ state }, id) => api.deleteUser(state.accessToken, id),
+
+    fetchEmails: ({ commit }) => api.getEmails()
+      .then((emails) => commit('setEmails', emails)),
+    fetchEmail: ({ commit }, id) => api.getEmail(id)
+      .then((email) => commit('setEmail', email)),
+    addEmail: (context, values) => api.addEmail(values),
+    updateEmail: ({ state }, { id, values }) => api.setEmail(state.accessToken, id, values),
+    deleteEmail: ({ state }, id) => api.deleteEmail(state.accessToken, id),
 
     fetchBlog: ({ commit }) => api
       .getBlog()

@@ -129,6 +129,22 @@ const routes = [
         name: 'AdminWikiEdit',
         component: () => import('../admin/edit/EditWikiPage.vue'),
       },
+
+      {
+        path: 'email',
+        name: 'AdminEmail',
+        component: () => import('../admin/items/Emails.vue'),
+      },
+      {
+        path: 'email/add',
+        name: 'AdminEmailAdd',
+        component: () => import('../admin/edit/EditEmail.vue'),
+      },
+      {
+        path: 'email/:id',
+        name: 'AdminEmailEdit',
+        component: () => import('../admin/edit/EditEmail.vue'),
+      },
     ],
   },
   {

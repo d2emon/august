@@ -8,7 +8,11 @@
         v-model="value"
         label="Введите адрес электронной почты"
       />
-      <v-btn id="submit">
+      <v-btn
+        id="submit"
+        :disabled="!value"
+        @click="submit"
+      >
         Подписаться
       </v-btn>
     </v-container>
@@ -21,6 +25,11 @@ export default {
   data: () => ({
     value: '',
   }),
+  methods: {
+    submit() {
+      this.$emit('submit', this.value);
+    },
+  },
 };
 </script>
 

@@ -5,6 +5,8 @@ import projectApi from './project';
 import socialApi from './social';
 import categoryApi, { prepareCategory } from './category';
 import articleApi, { prepareArticle } from './article';
+import userApi from './user';
+import emailApi from './email';
 import authApi from './auth';
 
 const prepareBlog = (data) => {
@@ -64,6 +66,18 @@ export default {
   addArticle: articleApi.addArticle,
   setArticle: articleApi.setArticle,
   deleteArticle: articleApi.deleteArticle,
+
+  getUsers: userApi.getUsers,
+  getUser: userApi.getUserById,
+  addUser: userApi.addUser,
+  setUser: userApi.setUser,
+  deleteUser: userApi.deleteUser,
+
+  getEmails: emailApi.getEmails,
+  getEmail: emailApi.getEmailById,
+  addEmail: emailApi.addEmail,
+  setEmail: emailApi.setEmail,
+  deleteEmail: emailApi.deleteEmail,
 
   getBlog: () => api.get('/blog')
     .then(({ data }) => prepareBlog(data)),

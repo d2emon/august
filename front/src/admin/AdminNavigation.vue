@@ -59,6 +59,11 @@ export default {
         title: 'Блог',
         to: '/admin/article',
       },
+      {
+        id: 8,
+        title: 'Рассылка',
+        to: '/admin/email',
+      },
     ],
   }),
 };
