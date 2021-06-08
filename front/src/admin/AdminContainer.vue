@@ -11,10 +11,10 @@
       <v-spacer />
 
       <v-btn
-        v-if="user"
+        v-if="adminUser"
         text
       >
-        {{ user }}
+        {{ adminUser.username }}
       </v-btn>
     </v-app-bar>
 
@@ -68,6 +68,7 @@ export default {
   computed: {
     ...mapState([
       'title',
+      'adminUser',
     ]),
   },
   data: () => ({
@@ -84,6 +85,8 @@ export default {
       const result = await this.getToken(values);
       if (!result) {
         this.showLogin = true;
+      } else {
+        await this.check();
       }
     },
     async check() {

@@ -27,6 +27,7 @@ export default new Vuex.Store({
 
     accessToken: null,
     refreshToken: null,
+    adminUser: null,
   },
   mutations: {
     setServices: (state, value) => Vue.set(state, 'services', value),
@@ -43,6 +44,7 @@ export default new Vuex.Store({
     setArticleCategories: (state, value) => Vue.set(state, 'articleCategories', value),
     setAccessToken: (state, value) => Vue.set(state, 'accessToken', value),
     setRefreshToken: (state, value) => Vue.set(state, 'refreshToken', value),
+    setAdminUser: (state, value) => Vue.set(state, 'adminUser', value),
   },
   actions: {
     fetchServices: ({ commit }) => api.getServices()
@@ -132,12 +134,13 @@ export default new Vuex.Store({
         return false;
       }),
     checkToken: ({ commit, state }) => api.checkUser(state.accessToken)
-      .then((result) => {
-        if (!result) {
+      .then((user) => {
+        commit('setAdminUser', user);
+        if (!user) {
           commit('setAccessToken', null);
           commit('setRefreshToken', null);
         }
-        return result;
+        return user;
       }),
   },
   modules: {
