@@ -1,7 +1,7 @@
 import api from './api';
 import config from '../config';
 
-export default {
+const authApi = {
   getToken: (username, password) => {
     const data = new URLSearchParams();
     data.append('grant_type', 'password');
@@ -34,3 +34,5 @@ export default {
       throw new Error(e);
     }),
 };
+
+export default authApi;

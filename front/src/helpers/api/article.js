@@ -1,4 +1,4 @@
-import markdown from '@/helpers/markdown';
+import markdown from '../markdown';
 import api from './api';
 
 export const prepareArticle = (article) => (article ? {
@@ -15,7 +15,7 @@ export const prepareArticle = (article) => (article ? {
   nextPost: article.nextPost ? `/blog/articles/${article.nextPost}` : null,
 } : null);
 
-export default {
+const articleApi = {
   getArticles: () => api.get('/blog/articles')
     .then(({ data }) => (data.articles ? data.articles.map(prepareArticle) : [])),
   getCategoryArticles: (categoryId) => api.get(`/blog/categories/${categoryId}/articles`)
@@ -42,3 +42,5 @@ export default {
     },
   }),
 };
+
+export default articleApi;

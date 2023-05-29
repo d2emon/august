@@ -1,4 +1,4 @@
-import api from './api';
+import API from './api';
 import pageApi from './page';
 import serviceApi from './service';
 import projectApi from './project';
@@ -22,7 +22,7 @@ const prepareBlog = (data) => {
   };
 };
 
-export default {
+const api = {
   getServices: serviceApi.getServices,
   getService: serviceApi.getService,
   getServiceById: serviceApi.getServiceById,
@@ -79,9 +79,11 @@ export default {
   setEmail: emailApi.setEmail,
   deleteEmail: emailApi.deleteEmail,
 
-  getBlog: () => api.get('/blog')
+  getBlog: () => API.get('/blog')
     .then(({ data }) => prepareBlog(data)),
 
   getToken: authApi.getToken,
   checkUser: authApi.checkUser,
 };
+
+export default api;

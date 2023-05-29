@@ -1,4 +1,4 @@
-import markdown from '@/helpers/markdown';
+import markdown from '../markdown';
 import api from './api';
 
 const prepareService = (service) => (service ? {
@@ -12,7 +12,7 @@ const prepareService = (service) => (service ? {
   html: markdown.render(service.text || ''),
 } : null);
 
-export default {
+const serviceApi = {
   getServices: () => api.get('/service')
     .then(({ data }) => (data.services ? data.services.map(prepareService) : [])),
   getService: (serviceId) => api.get(`/service/${serviceId}`)
@@ -35,3 +35,5 @@ export default {
     },
   }),
 };
+
+export default serviceApi;

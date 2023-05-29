@@ -1,4 +1,4 @@
-import markdown from '@/helpers/markdown';
+import markdown from '../markdown';
 import api from './api';
 
 const prepareProject = (project) => (project ? {
@@ -14,7 +14,7 @@ const prepareProject = (project) => (project ? {
   html: markdown.render(project.text || ''),
 } : null);
 
-export default {
+const projectApi = {
   getProjects: () => api.get('/project')
     .then(({ data }) => (data.projects ? data.projects.map(prepareProject) : [])),
   getProject: (projectId) => api.get(`/project/${projectId}`)
@@ -42,3 +42,5 @@ export default {
   getServiceProjects: (serviceId) => api.get(`/project/service/${serviceId}`)
     .then(({ data }) => (data.projects ? data.projects.map(prepareProject) : [])),
 };
+
+export default projectApi;

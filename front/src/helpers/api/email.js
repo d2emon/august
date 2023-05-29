@@ -6,7 +6,7 @@ const prepareEmail = (email) => (email ? {
   email: email.email,
 } : null);
 
-export default {
+const emailApi = {
   getEmails: () => api.get('/email')
     .then(({ data }) => (data.emails ? data.emails.map(prepareEmail) : [])),
   getEmailById: (id) => api.get(`/email/id/${id}`)
@@ -23,3 +23,5 @@ export default {
     },
   }),
 };
+
+export default emailApi;

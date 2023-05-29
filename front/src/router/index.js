@@ -1,234 +1,249 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import React from 'react';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import AdminContainer from '../admin/AdminContainer';
+import AdminHome from '../admin/Home';
+import August from '../views/August';
+import Home from '../views/Home';
+import SpinLogo from '../SpinLogo';
+import Users from '../admin/Users';
+import Articles from '../admin/Articles';
+import Categories from '../admin/Categories';
+import Services from '../admin/Services';
+import Projects from '../admin/Projects';
+import Socials from '../admin/Socials';
+import Emails from '../admin/Emails';
+import Wiki from '../admin/Wiki';
+import About from '../views/About';
+import AboutPage from '../views/AboutPage';
 
-Vue.use(VueRouter);
+const statsLoader = () => {
+  const data = {
+    date: new Date(),
+    referrer: document.referrer,
+    userAgent: navigator.userAgent,
+    platform: navigator.platform,
+    mobile: navigator.userAgentData.mobile,
+    height: window.innerHeight,
+    width: window.innerWidth,
+  };
+  return data;
+}
 
 const routes = [
   {
     path: '/admin',
-    component: () => import('../admin/AdminContainer.vue'),
+    element: <AdminContainer />,
     children: [
       {
         path: '',
-        redirect: '/admin/home',
+        element: <Navigate to="/admin/home" />,
       },
       {
         path: 'home',
-        name: 'AdminHome',
-        component: () => import('../admin/Home.vue'),
+        element: <AdminHome />,
       },
 
       {
         path: 'article',
-        name: 'AdminArticle',
-        component: () => import('../admin/items/Articles.vue'),
+        element: <Articles />,
       },
       {
         path: 'article/add',
-        name: 'AdminArticleAdd',
-        component: () => import('../admin/edit/EditArticle.vue'),
+        element: <Articles.Edit />,
       },
       {
         path: 'article/:id',
-        name: 'AdminArticleEdit',
-        component: () => import('../admin/edit/EditArticle.vue'),
+        element: <Articles.Edit />,
       },
 
       {
         path: 'category',
-        name: 'AdminCategory',
-        component: () => import('../admin/items/Categories.vue'),
+        element: <Categories />,
       },
       {
         path: 'category/add',
-        name: 'AdminCategoryAdd',
-        component: () => import('../admin/edit/EditCategory.vue'),
+        element: <Categories.Edit />,
       },
       {
         path: 'category/:id',
-        name: 'AdminCategoryEdit',
-        component: () => import('../admin/edit/EditCategory.vue'),
+        element: <Categories.Edit />,
       },
 
       {
         path: 'project',
-        name: 'AdminProjects',
-        component: () => import('../admin/items/Projects.vue'),
+        element: <Projects />,
       },
       {
         path: 'project/add',
-        name: 'AdminProjectAdd',
-        component: () => import('../admin/edit/EditProject.vue'),
+        element: <Projects.Edit />,
       },
       {
         path: 'project/:id',
-        name: 'AdminProjectEdit',
-        component: () => import('../admin/edit/EditProject.vue'),
+        element: <Projects.Edit />,
       },
 
       {
         path: 'service',
-        name: 'AdminServices',
-        component: () => import('../admin/items/Services.vue'),
+        element: <Services />,
       },
       {
         path: 'service/add',
-        name: 'AdminServiceAdd',
-        component: () => import('../admin/edit/EditService.vue'),
+        element: <Services.Edit />,
       },
       {
         path: 'service/:id',
-        name: 'AdminServiceEdit',
-        component: () => import('../admin/edit/EditService.vue'),
+        element: <Services.Edit />,
       },
 
       {
         path: 'social',
-        name: 'AdminSocials',
-        component: () => import('../admin/items/Socials.vue'),
+        element: <Socials />,
       },
       {
         path: 'social/add',
-        name: 'AdminSocialAdd',
-        component: () => import('../admin/edit/EditSocial.vue'),
+        element: <Socials.Edit />,
       },
       {
         path: 'social/:id',
-        name: 'AdminSocialEdit',
-        component: () => import('../admin/edit/EditSocial.vue'),
+        element: <Socials.Edit />,
       },
 
       {
         path: 'user',
-        name: 'AdminUsers',
-        component: () => import('../admin/items/Users.vue'),
+        element: <Users />,
       },
       {
         path: 'user/add',
-        name: 'AdminUserAdd',
-        component: () => import('../admin/edit/EditUser.vue'),
+        element: <Users.Edit />,
       },
       {
         path: 'user/:id',
-        name: 'AdminUserEdit',
-        component: () => import('../admin/edit/EditUser.vue'),
+        element: <Users.Edit />,
       },
 
       {
         path: 'wiki',
-        name: 'AdminWiki',
-        component: () => import('../admin/items/WikiPages.vue'),
+        element: <Wiki />,
       },
       {
         path: 'wiki/add',
-        name: 'AdminWikiAdd',
-        component: () => import('../admin/edit/EditWikiPage.vue'),
+        element: <Wiki.Edit />,
       },
       {
         path: 'wiki/:id',
-        name: 'AdminWikiEdit',
-        component: () => import('../admin/edit/EditWikiPage.vue'),
+        element: <Wiki.Edit />,
       },
 
       {
         path: 'email',
-        name: 'AdminEmail',
-        component: () => import('../admin/items/Emails.vue'),
+        element: <Emails />,
       },
       {
         path: 'email/add',
-        name: 'AdminEmailAdd',
-        component: () => import('../admin/edit/EditEmail.vue'),
+        element: <Emails.Edit />,
       },
       {
         path: 'email/:id',
-        name: 'AdminEmailEdit',
-        component: () => import('../admin/edit/EditEmail.vue'),
+        element: <Emails.Edit />,
       },
     ],
   },
   {
     path: '/',
-    component: () => import('../views/August.vue'),
+    element: <August />,
     children: [
       {
         path: '/',
-        redirect: '/index',
+        element: <Navigate to="/index" />,
+        loader: statsLoader,
       },
       {
         path: '/index',
-        name: 'Home',
-        component: () => import('../views/Home.vue'),
+        element: <Home />,
+        loader: statsLoader,
       },
       {
         path: '/about',
-        component: () => import('../views/About.vue'),
+        element: <About />,
         children: [
           {
             path: '',
-            name: 'PageList',
+            element: <AboutPage />,
+            loader: statsLoader,
           },
           {
-            path: ':id',
-            name: 'Page',
+            path: ':pageId',
+            element: <AboutPage />,
+            loader: statsLoader,
           },
         ],
       },
       {
         path: '/services',
-        component: () => import('../views/Services.vue'),
+        element: <SpinLogo />,
+        // component: () => import('../views/Services.vue'),
         children: [
           {
             path: '',
-            name: 'ServicesList',
+            loader: statsLoader,
+            // name: 'ServicesList',
           },
           {
             path: ':service',
-            name: 'Service',
+            loader: statsLoader,
+            // name: 'Service',
           },
         ],
       },
       {
         path: '/portfolio',
-        name: 'Portfolio',
-        component: () => import('../views/Portfolio.vue'),
+        // name: 'Portfolio',
+        element: <SpinLogo />,
+        loader: statsLoader,
+        // component: () => import('../views/Portfolio.vue'),
         children: [
           {
             path: 'service/:service',
-            name: 'PortfolioItems',
+            loader: statsLoader,
+            // name: 'PortfolioItems',
           },
         ],
       },
       {
         path: '/project/:id',
-        name: 'Project',
-        component: () => import('../views/Project.vue'),
+        // name: 'Project',
+        element: <SpinLogo />,
+        loader: statsLoader,
+        // component: () => import('../views/Project.vue'),
       },
       {
         path: '/blog',
-        component: () => import('../views/Blog.vue'),
+        element: <SpinLogo />,
+        // component: () => import('../views/Blog.vue'),
         children: [
           {
             path: '',
-            name: 'LatestArticle',
+            loader: statsLoader,
+            // name: 'LatestArticle',
           },
           {
             path: 'articles/:id',
-            name: 'Article',
+            loader: statsLoader,
+            // name: 'Article',
           },
         ],
       },
       {
         path: '/blog/categories/:id',
-        name: 'BlogCategories',
-        component: () => import('../views/BlogCategories.vue'),
+        // name: 'BlogCategories',
+        element: <SpinLogo />,
+        loader: statsLoader,
+        // component: () => import('../views/BlogCategories.vue'),
       },
     ],
   },
 ];
 
-const router = new VueRouter({
-  routes,
-});
+const router = createBrowserRouter(routes);
 
 export default router;

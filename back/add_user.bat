@@ -1,3 +1,3 @@
 set USERNAME=admin
 set PASSWORD=admin
-npm start
+npm run user

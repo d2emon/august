@@ -1,4 +1,4 @@
-import markdown from '@/helpers/markdown';
+import markdown from '../markdown';
 import api from './api';
 
 const preparePage = (page) => (page ? {
@@ -10,7 +10,7 @@ const preparePage = (page) => (page ? {
   html: markdown.render(page.text || ''),
 } : null);
 
-export default {
+const pageApi = {
   getPages: () => api.get('/page')
     .then(({ data }) => (data.pages ? data.pages.map(preparePage) : [])),
   getPage: (pageId) => api.get(`/page/${pageId}`)
@@ -33,3 +33,5 @@ export default {
     },
   }),
 };
+
+export default pageApi;

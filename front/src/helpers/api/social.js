@@ -7,7 +7,7 @@ const prepareSocial = (social) => (social ? {
   social: social.social,
 } : null);
 
-export default {
+const socialApi = {
   getSocials: () => api.get('/social')
     .then(({ data }) => (data.socials ? data.socials.map(prepareSocial) : [])),
   getSocial: (socialId) => api.get(`/social/${socialId}`)
@@ -28,3 +28,5 @@ export default {
     },
   }),
 };
+
+export default socialApi;

@@ -7,7 +7,7 @@ const prepareUser = (user) => (user ? {
   date: user.date,
 } : null);
 
-export default {
+const userApi = {
   getUsers: () => api.get('/user')
     .then(({ data }) => (data.users ? data.users.map(prepareUser) : [])),
   getUserById: (id) => api.get(`/user/id/${id}`)
@@ -28,3 +28,5 @@ export default {
     },
   }),
 };
+
+export default userApi;

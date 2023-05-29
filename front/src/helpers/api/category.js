@@ -7,7 +7,7 @@ export const prepareCategory = (category) => (category ? {
   to: `/blog/categories/${category.slug}`,
 } : null);
 
-export default {
+const categoryApi = {
   getCategories: () => api.get('/blog/categories')
     .then(({ data }) => (data.categories ? data.categories.map(prepareCategory) : [])),
   getCategory: (categoryId) => api.get(`/blog/categories/${categoryId}`)
@@ -28,3 +28,5 @@ export default {
     },
   }),
 };
+
+export default categoryApi;

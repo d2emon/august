@@ -1,6 +1,6 @@
-export default {
+const config = {
   apiUrl: 'http://127.0.0.1:4000/api/v1.0/',
-  author: 'Грекова Т. В., 2021',
+  author: 'Грекова Т. В., 2023',
   title: 'Рекламное агентство "Август"',
   navigation: [
     {
@@ -31,3 +31,5 @@ export default {
     password: 'thereisnospoon',
   },
 };
+
+export default config;

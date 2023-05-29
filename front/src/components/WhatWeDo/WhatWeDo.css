@@ -1,0 +1,71 @@
+.what-we-do {
+    background:none;
+    box-shadow:none;
+    margin: 0 21px;
+  }
+.what-we-do > h3 {
+    background:url(../../assets/images/border.jpg) repeat-x right center;
+    margin:20px 0 24px;
+  }
+.what-we-do > h3 span {
+    font-family: 'Conv_Muli-Regular';
+    font-size:18px;
+    color:#7d7d7d;
+    font-weight:normal;
+    display:block;
+    background-color:#fff;
+    width: 140px;
+  }
+.what-we-do > div {
+    margin:0;
+  }
+.what-we-do > p {
+    padding:0;
+  }
+ .what-we-do > .service-links {
+    margin:0;
+    padding:4px 0 7px;
+    list-style:none;
+    overflow:hidden;
+  }
+  .what-we-do > .service-links > a{
+    text-decoration: none;
+  }
+.what-we-do > ul.service-links {
+    margin:0;
+    padding:4px 0 7px;
+    list-style:none;
+    overflow:hidden;
+  }
+.what-we-do > ul.service-links li:first-child {
+    margin:0;
+  }
+.what-we-do > ul.service-links li {
+    float:left;
+    height: 257px;
+    width: 215px;
+    position:relative;
+    margin:0 0 0 7px;
+  }
+.what-we-do > ul.service-links li:hover {
+    filter:alpha(opacity=90);/* Needed for IE8 and old versions */
+    opacity:0.9;
+  }
+.what-we-do > ul.service-links li a {
+    text-decoration: none;
+  }
+  .service-name {
+    color:#7c7c7c;
+    font-size:24px;
+    text-transform:uppercase;
+    font-family:Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    text-decoration:none;
+  }
+  .service-name:hover {
+    color: #919191;
+  }
+  
+.service-card {
+  min-height: 325px;
+  width: 215px;
+}

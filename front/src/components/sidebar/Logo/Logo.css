@@ -1,0 +1,10 @@
+#logo {
+  text-decoration: none;
+}
+#logo span {
+  display: block;
+  text-align: center;
+  padding-top: 24px;
+  color: #6b6b6b;
+}
+  
