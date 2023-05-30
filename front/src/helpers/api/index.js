@@ -8,6 +8,7 @@ import articleApi, { prepareArticle } from './article';
 import userApi from './user';
 import emailApi from './email';
 import authApi from './auth';
+import statsApi from './stats';
 
 const prepareBlog = (data) => {
   const {
@@ -84,6 +85,9 @@ const api = {
 
   getToken: authApi.getToken,
   checkUser: authApi.checkUser,
+
+  getStats: statsApi.getStats,
+  addStats: statsApi.addStats,
 };
 
 export default api;

@@ -15,6 +15,6 @@ ENV DEBUG 1
 ENV HOST 0.0.0.0
 
 # Port to expose
-EXPOSE 8080
+EXPOSE 3000
 
-ENTRYPOINT [ "npm", "run", "serve"]
+ENTRYPOINT [ "npm", "run", "start"]

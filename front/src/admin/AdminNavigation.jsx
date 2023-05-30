@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { Card, ListGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const menu = [
@@ -47,15 +47,20 @@ const menu = [
 
 function AdminNavigation() {
   return (
-    <ListGroup>
-      { menu.map((item) => <ListGroup.Item
-        key={item.id}
-        to={item.to}
-        as={Link}
-      >
-        {item.title}
-      </ListGroup.Item>) }
-    </ListGroup>  
+    <Card className="my-2">
+      <Card.Header>
+        <Card.Title>Разделы</Card.Title>
+      </Card.Header>
+      <ListGroup>
+        { menu.map((item) => <ListGroup.Item
+          key={item.id}
+          to={item.to}
+          as={Link}
+        >
+          {item.title}
+        </ListGroup.Item>) }
+      </ListGroup>  
+    </Card>
   );
 }
 

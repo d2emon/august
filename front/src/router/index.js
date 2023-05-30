@@ -15,18 +15,21 @@ import Emails from '../admin/Emails';
 import Wiki from '../admin/Wiki';
 import About from '../views/About';
 import AboutPage from '../views/AboutPage';
+import api from '../helpers/api';
+import StatPage from '../admin/stats/StatPage';
 
-const statsLoader = () => {
-  const data = {
-    date: new Date(),
-    referrer: document.referrer,
-    userAgent: navigator.userAgent,
-    platform: navigator.platform,
-    mobile: navigator.userAgentData.mobile,
-    height: window.innerHeight,
-    width: window.innerWidth,
-  };
-  return data;
+const sendStats = async (url) => {
+  try {
+    await api.addStats(url);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const statsLoader = ({ request }) => {
+  sendStats(request.url);
+
+  return null;
 }
 
 const routes = [
@@ -146,6 +149,15 @@ const routes = [
         path: 'email/:id',
         element: <Emails.Edit />,
       },
+
+      {
+        path: 'stats/week',
+        element: <StatPage mode="week" />,
+      },
+      {
+        path: 'stats/year',
+        element: <StatPage mode="year" />,
+      },
     ],
   },
   {
@@ -155,7 +167,6 @@ const routes = [
       {
         path: '/',
         element: <Navigate to="/index" />,
-        loader: statsLoader,
       },
       {
         path: '/index',

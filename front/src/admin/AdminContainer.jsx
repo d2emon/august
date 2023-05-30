@@ -7,6 +7,7 @@ import { checkToken, getToken, selectAdminUser, selectIsAuth } from '../reducers
 import Main from '../views/Main';
 import AdminNavigation from './AdminNavigation';
 import LoginModal from './LoginModal';
+import StatsNavigation from './StatsNavigation';
 
 function AdminContainer() {
   const {
@@ -69,6 +70,8 @@ function AdminContainer() {
           <Row>
             <Col md={2}>
               <Container className="m-2">
+                <StatsNavigation />
+
                 <AdminNavigation />
               </Container>
             </Col>

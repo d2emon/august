@@ -9,6 +9,7 @@ import projectSlice from '../reducers/projectSlice';
 import serviceSlice from '../reducers/serviceSlice';
 import socialSlice from '../reducers/socialSlice';
 import userSlice from '../reducers/userSlice';
+import statsSlice from '../reducers/statsSlice';
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     service: serviceSlice,
     social: socialSlice,
     user: userSlice,
+    stats: statsSlice,
   },
 });
 
